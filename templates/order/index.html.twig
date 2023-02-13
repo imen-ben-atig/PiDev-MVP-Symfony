@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+
+    <section class="bg-light p-3">
+        <h1>Order index</h1>
+    </section>
+
+        <h1>Order index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="color: #8984dc">Id</th>
+                <th style="color: #8984dc">Status</th>
+                <th style="color: #8984dc">Total</th>
+                <th style="color: #8984dc">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td style="color: #8984dc">{{ order.id }}</td>
+                <td style="color: #8984dc">{{ order.status }}</td>
+                <td style="color: #8984dc">{{ order.total }}</td>
+                <td style="color: #8984dc">
+                    <a style="color: #8984dc" href="{{ path('app_order_show', {'id': order.id}) }}">visualiser</a>
+                    <a style="color: #8984dc" href="{{ path('app_order_edit', {'id': order.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td style="color: #8984dc" colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

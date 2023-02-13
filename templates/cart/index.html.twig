@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <section class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </section>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="color: #8984dc">Produit</th>
+            <th style="color: #8984dc">Prix</th>
+            <th style="color: #8984dc">Quantité</th>
+            <th style="color: #8984dc">Total</th>
+            <th style="color: #8984dc">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in dataPanier %}
+            <tr>
+                <td style="color: #8984dc">{{ element.produit.nomProduit }}</td>
+                <td class="text-end" style="color: #8984dc">{{ element.produit.prix }} DT</td>
+                <td class="text-end"style="color: #8984dc">{{ element.quantite }}</td>
+                <td class="text-end"style="color: #8984dc">{{ element.quantite * element.produit.prix }} DT</td>
+                <td>
+                    <a href="{{path("cart_add", {id: element.produit.id})}}" class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i>
+                    </a>
+                    <a href="{{path("cart_remove", {id: element.produit.id})}}" class="btn btn-warning">
+                        <i class="bi bi-cart-dash"></i>
+                    </a>
+                    <a href="{{path("cart_delete", {id: element.produit.id})}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center"style="color: #8984dc">Votre panier est vide</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3"style="color: #8984dc">Total</td>
+            <td class="text-end"style="color: #8984dc">{{ total }} DT</td>
+            <td>
+                <a href="{{path("cart_delete_all")}}" class="btn btn-danger">
+                    <i class="bi bi-cart-x"></i>
+                </a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    <a href="{{path("app_cart_submit")}}" class="btn btn-success" style="float:right;margin-right:280px">
+       Commander
+    </a>
+{% endblock %}
