@@ -17,14 +17,13 @@ class Repons
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_rep = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $contenu_rep = null;
+
     #[ORM\Column]
     private ?int $status_rep = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $relation = null;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Reclamation $id_reclamation = null;
 
     public function getId(): ?int
@@ -44,6 +43,18 @@ class Repons
         return $this;
     }
 
+    public function getContenuRep(): ?string
+    {
+        return $this->contenu_rep;
+    }
+
+    public function setContenuRep(string $contenu_rep): self
+    {
+        $this->contenu_rep = $contenu_rep;
+
+        return $this;
+    }
+
     public function getStatusRep(): ?int
     {
         return $this->status_rep;
@@ -55,12 +66,13 @@ class Repons
 
         return $this;
     }
+
     public function getIdReclamation(): ?Reclamation
     {
         return $this->id_reclamation;
     }
 
-    public function setIdReclamation(Reclamation $id_reclamation): self
+    public function setIdReclamation(?Reclamation $id_reclamation): self
     {
         $this->id_reclamation = $id_reclamation;
 
