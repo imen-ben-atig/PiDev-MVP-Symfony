@@ -1,0 +1,48 @@
+{% extends 'Back/base.html.twig' %}
+
+{% block body %}
+     <div class="container">
+        <h2 class="text-center mt-5 mb-3">Voir Produit</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_produit_index') }}"> 
+                    Voir Tous Produits
+                </a>
+            </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_produit</th>
+                <td>{{ produit.nomProduit }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ produit.stock }}</td>
+            </tr>
+            <tr>
+                <th>Img</th>
+                <td>{{ produit.img }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+    <a href="{{ path('app_produit_index') }}">back to list</a>
+
+    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+
+{% endblock %}

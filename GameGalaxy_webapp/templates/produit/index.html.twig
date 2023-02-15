@@ -1,0 +1,57 @@
+{% extends 'Back/base.html.twig' %}
+
+
+{% block body %}
+<br>
+	<div class="container"><br><br>
+		<h2 class="text-center mt-5 mb-3">GameGalaxy Manager de Produit</h2>
+
+		<div class="card">
+			<div class="card-header">
+				<a class="btn btn-outline-primary" href="{{ path('app_produit_new') }}">
+					Ajouter noveau produit
+				</a>
+			</div>
+			<div class="container m-20">
+				<div class="card-body">
+
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nom Produit</th>
+								<th>Prix</th>
+								<th>Description</th>
+								<th>Stock</th>
+								<th>Image</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for produit in produits %}
+								<tr>
+									<td>{{ produit.id }}</td>
+									<td>{{ produit.nomProduit }}</td>
+									<td>{{ produit.prix }}</td>
+									<td>{{ produit.description }}</td>
+									<td>{{ produit.stock }}</td>
+									<td>{{ produit.img }}</td>
+									<td>
+
+											<a class="btn btn-success" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
+											<a class="btn btn-info" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+
+											    {{ include('produit/_delete_form.html.twig') }}
+
+										</form>
+									</td>
+								</tr>
+
+							{% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	{% endblock %}

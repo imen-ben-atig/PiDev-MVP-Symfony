@@ -1,0 +1,38 @@
+{% extends 'Back/base.html.twig' %}
+{% block body %}
+<div class="container">
+        <h2 class="text-center mt-5 mb-3">Voir Categorie</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_categorie_index') }}"> 
+                    Voir Tous categories
+                </a>
+            </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_categorie</th>
+                <td>{{ categorie.getNomCategorie }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ categorie.etat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ categorie.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_index') }}">back to list</a>
+
+    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
+
+    
+{% endblock %}
