@@ -75,4 +75,11 @@ class ReclamationController extends AbstractController
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/front', name: 'app_front_reclamation_index', methods: ['GET'])]
+    public function indexFront(ReclamationRepository $reclamationRepository): Response
+    {
+        return $this->render('reclamation/index_front.html.twig', [
+            'reclamations' => $reclamationRepository->findAll(),
+        ]);
+    }
 }

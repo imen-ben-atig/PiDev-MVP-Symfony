@@ -1,6 +1,9 @@
 {% extends 'BACK/base.html.twig' %}
 {% block body %}
 <div  id="layoutSidenav_content">
+
+
+{% block body %}
     <h1>Repons index</h1>
 
     <table class="table">
@@ -30,8 +33,8 @@
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
-    </div>
+        </tbody>
     </table>
+
     <a href="{{ path('app_repons_new') }}">Create new</a>
-    </div>
 {% endblock %}
