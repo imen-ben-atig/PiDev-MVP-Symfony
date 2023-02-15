@@ -56,6 +56,14 @@ class EvenementController extends AbstractController
         ]);
     }
 
+    #[Route('/front/{id}', name: 'app_front_evenement_show', methods: ['GET'])]
+    public function showFront(Evenement $evenement): Response
+    {
+        return $this->render('evenement/show_front.html.twig', [
+            'evenement' => $evenement,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_evenement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Evenement $evenement, EvenementRepository $evenementRepository): Response
     {
