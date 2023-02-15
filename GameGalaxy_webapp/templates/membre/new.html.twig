@@ -1,15 +1,83 @@
-<!DOCTYPE html>
+{% extends 'BACK/base.html.twig' %}
 
-
-
-
-<title>New Membre</title>
-
-{% block body %}
-    <h1>Create new Membre</h1>
-
-    {{ include('membre/_form.html.twig') }}
-
-    <a href="{{ path('app_membre_index') }}">back to list</a>
+{% block title %}
+	Membre
 {% endblock %}
 
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div id="layoutAuthentication">
+				<div id="layoutAuthentication_content">
+					<main>
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-7">
+									<div class="card shadow-lg border-0 rounded-lg mt-5">
+										<div class="card-header">
+											<h3 class="text-center font-weight-light my-4">Créer un utilisateur </h3>
+										</div>
+										<div class="card-body">
+											{{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+											<div class="row mb-3">
+												<div class="col-md-6">
+													<div class="form-floating mb-3 mb-md-0">
+														{{form_widget(form.pseudo,{'attr':{'class':'form-control'}})}}
+														<label for="inputFirstName">User Name</label>
+													</div>
+                                                    <div class="col-md-6">
+	                                                    <div class="form-floating mb-3 mb-md-0">
+		                                                {{form_widget(form.email,{'attr':{'class':'form-control'}})}}
+	                                                	<label for="inputFirstName">Email</label>
+	                                                </div>
+                                                     <div class="col-md-6">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                        {{form_widget(form.niveaucompte,{'attr':{'class':'form-control'}})}}
+                                                        <label for="inputFirstName">niveaucompte</label>
+                                                    </div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-floating">
+														{{form_widget(form.date_naissance,{'attr':{'class':'form-control datetimepicker'}})}}
+														<label for="inputLastName">date de naissance</label>
+													</div>
+												</div>
+											</div>
+											<div class="form-floating mb-3">
+												{{form_widget(form.mdp_compte,{'attr':{'class':'form-control'}})}}
+												<label for="inputEmail">mdp compte</label>
+											</div>
+											<div class="row mb-3">
+												<div class="col-md-6">
+													<div class="form-floating mb-3 mb-md-0">
+														{{form_widget(form.token,{'attr':{'class':'form-control'}})}}
+														<label for="inputFirstName">token</label>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-floating">
+														{{form_widget(form.date_token ,{'attr':{'class':'form-control datetimepicker'}})}}
+														<label for="inputLastName">date_token </label>
+													</div>
+												</div>
+											</div>
+											<div class="mt-4 mb-0">
+												<div class="d-grid">
+													<button class="btn">{{ button_label|default('Save') }}</button>
+												</div>
+											</div>
+											{{form_end(form)}}
+										</div>
+										<div class="card-footer text-center py-3">
+											<div class="small">
+												<a href="{{ path('app_membre_index') }}">Retour à la liste</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</main>
+				</div>
+			</main>
+		{% endblock %}

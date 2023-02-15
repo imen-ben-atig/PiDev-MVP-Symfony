@@ -1,11 +1,15 @@
-<!DOCTYPE html>
 
-<title>Membre</title>
+{% extends 'BACK/base.html.twig' %}
+{% block title %}
+	Détails de l'utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>Membre</h1>
 
-    <table class="table">
+   <div id="layoutSidenav_content">
+		<main>
+			<div class="card-body">
+				<table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -41,10 +45,12 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_membre_index') }}">back to list</a>
-
-    <a href="{{ path('app_membre_edit', {'id': membre.id}) }}">edit</a>
-
-    {{ include('membre/_delete_form.html.twig') }}
+    <div class="col-md-6">
+    <a  class="btn btn-primary btn-block"  href="{{ path('app_membre_index') }}">back to list</a>
+    </div>
+    <div class="row mb-3">
+					<div class="col-md-6">
+    <a class="btn btn-primary btn-block"  href="{{ path('app_membre_edit', {'id': membre.id}) }}">edit</a>
+    </div>
+    {{ include('membre/_delete_form.html.twig', {'class':'btn btn-primary btn-block'}) }}
 {% endblock %}
