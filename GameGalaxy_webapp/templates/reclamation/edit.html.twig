@@ -59,11 +59,11 @@
 											</div>
 											<div class="mt-4 mb-0">
 												<div class="d-grid">
-													{{ include('reclamation/_form.html.twig', {'button_label': 'Modifier'}) }}
+													{{ include('reclamation/_form.html.twig', {'button_label': 'Modifier'},{'class':'btn btn-success '}) }}
 												</div>
 											</div>
 											<div class="mt-4 mb-0">
-												<div class="d-grid">
+												<div class="d-grid" >
 													{{ include('reclamation/_delete_form.html.twig') }}
 												</div>
 											</div>
@@ -73,7 +73,7 @@
 										</div>
 										<div class="card-footer text-center py-3">
 											<div class="small">
-												<a href="{{ path('app_reclamation_index') }}">Retour à la liste</a>
+												<a type="button" class="btn btn-primary" href="{{ path('app_reclamation_index') }}">Retour à la liste</a>
 											</div>
 										</div>
 									</div>

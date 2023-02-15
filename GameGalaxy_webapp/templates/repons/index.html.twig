@@ -2,10 +2,6 @@
 {% block body %}
 <div  id="layoutSidenav_content">
 
-
-{% block body %}
-    <h1>Repons index</h1>
-
     <table class="table">
         <thead>
             <tr>
@@ -24,8 +20,8 @@
                 <td>{{ repon.contenuRep }}</td>
                 <td>{{ repon.statusRep }}</td>
                 <td>
-                    <a href="{{ path('app_repons_show', {'id': repon.id}) }}">show</a>
-                    <a href="{{ path('app_repons_edit', {'id': repon.id}) }}">edit</a>
+                    <a type="button" class="btn btn-warning" href="{{ path('app_repons_show', {'id': repon.id}) }}">show</a>
+                    <a type="button" class="btn btn-info" href="{{ path('app_repons_edit', {'id': repon.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +32,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_repons_new') }}">Create new</a>
+  <centre><a role="button" class="btn btn-primary" href="{{ path('app_repons_new') }}">Create new</a></centre>
 {% endblock %}

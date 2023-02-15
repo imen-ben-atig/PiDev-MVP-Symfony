@@ -8,59 +8,63 @@
 	<div id="layoutSidenav_content">
 		<main>
 			<div id="layoutAuthentication">
-				<div id="layoutAuthentication_content">
+				{# <div id="layoutAuthentication_content"> #}
 					<main>
 						<div class="container">
 							<div class="row justify-content-center">
 								<div class="col-lg-7">
 									<div class="card shadow-lg border-0 rounded-lg mt-5">
 										<div class="card-header">
-											<h3 class="text-center font-weight-light my-4">Créer Reclamation</h3>
+											<h3 class="text-center font-weight-light my-4">Créer évènement</h3>
 										</div>
 										<div class="card-body">
 											{{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
-											<div class="row mb-3">
-												<div class="col-md-6">
-													<div class="form-floating mb-3 mb-md-0">
-														<label for="inputFirstName">Titre</label>
-                                                        {{form_widget(form.titre_rec,{'attr':{'class':'form-control'}})}}
+											<div class="form-group">
+												<div class="form-group">
+													<div class="form-group" class="form-floating mb-3 mb-md-0" > 
+													<a >Titre</a>
+														{{form_widget(form.titre_rec,{'attr':{'class':'form-control',}})}}
 														
 													</div>
 												</div>
                                                 <div class="form-floating mb-3">
+												<a for="inputEmail">Type</a>
 												{{form_widget(form.type_rec,{'attr':{'class':'form-control'}})}}
-												<label for="inputEmail" >Type</label>
+												
 											</div>
-												<div class="col-md-6">
+												<div class="form-group">
 													<div class="form-floating">
-														{{form_widget(form.date_rec,{'attr':{'class':'form-control datetimepicker'}})}}
-														<label for="inputLastName">Date et Heure</label>
+													<a>Date et Heure</a>
+														{{form(form.date_rec,{'attr':{'class':'form-control datetimepicker'}})}}
+														
 													</div>
 												</div>
 											</div>
-											
-											<div class="row mb-3">
+											<br><br><br><br>
+											<div class="form-group">
 												<div class="col-md-6">
 													<div class="form-floating mb-3 mb-md-0">
+													<a for="inputFirstName">Contenu</a>
 														{{form_widget(form.contenu_rec,{'attr':{'class':'form-control'}})}}
-														<label for="inputFirstName">Contenu</label>
+														
 													</div>
 												</div>
-												<div class="col-md-6">
+												<div class="form-group">
 													<div class="form-floating">
+													<a for="inputLastName">Statut</a>
 														{{form_widget(form.statut_rec,{'attr':{'class':'form-control'}})}}
-														<label for="inputLastName">Statut</label>
+														
 													</div>
 												</div>
 											</div>
                                             <div class="mt-4 mb-0">
-												<div class="d-grid">
+												<div class="d-grid" ztype="button" class="btn btn-primary">
 													{{ include('reclamation/_form.html.twig', {'button_label': 'Valider'}, {'class':'btn btn-success '}) }}
 												</div>
 											</div>
 										<div class="card-footer text-center py-3">
 											<div class="small">
-												<a href="{{ path('app_reclamation_index') }}">Retour à la liste</a>
+												<a type="button" class="btn btn-primary" href="{{ path('app_reclamation_index') }}">Retour à la liste</a>
 											</div>
 										</div>
 									</div>
@@ -68,9 +72,6 @@
 							</div>
 						</div>
 					</main>
-				</div>
+				{# </div> #}
 			</main>
 		{% endblock %}
-
-
-        
