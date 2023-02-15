@@ -108,4 +108,11 @@ class Evenement
 
         return $this;
     }
+
+
+    public function __toString()
+    {
+        return $this->getNom() . ' (' . $this->getDate()->format('Y-m-d H:i:s') . ') '
+        ;
+    }
 }

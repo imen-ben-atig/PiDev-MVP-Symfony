@@ -1,0 +1,58 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}
+	Détails de l'évènement
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="card-body">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ evenement.id }}</td>
+						</tr>
+						<tr>
+							<th>Nom</th>
+							<td>{{ evenement.nom }}</td>
+						</tr>
+						<tr>
+							<th>Date</th>
+							<td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ evenement.description }}</td>
+						</tr>
+						<tr>
+							<th>Duree</th>
+							<td>{{ evenement.duree }}</td>
+						</tr>
+						<tr>
+							<th>Capacite</th>
+							<td>{{ evenement.capacite }}</td>
+						</tr>
+						<tr>
+							<th>Type</th>
+							<td>{{ evenement.type }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<a class="btn btn-primary btn-block" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">Modifier</a>
+					</div>
+					<div class="col-md-6">
+						{{ include('evenement/_delete_form.html.twig', {'class':'btn btn-primary btn-block'}) }}
+					</div>
+					<div class="col-md-6">
+						<a href="{{ path('app_evenement_index') }}">Retour à la liste</a>
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}
