@@ -1,0 +1,37 @@
+{% extends 'BACK/base.html.twig' %}
+{% block body %}
+<div  id="layoutSidenav_content">
+    <h1>Repons index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_rep</th>
+                <th>Contenu_rep</th>
+                <th>Status_rep</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for repon in repons %}
+            <tr>
+                <td>{{ repon.id }}</td>
+                <td>{{ repon.dateRep ? repon.dateRep|date('Y-m-d') : '' }}</td>
+                <td>{{ repon.contenuRep }}</td>
+                <td>{{ repon.statusRep }}</td>
+                <td>
+                    <a href="{{ path('app_repons_show', {'id': repon.id}) }}">show</a>
+                    <a href="{{ path('app_repons_edit', {'id': repon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+    </div>
+    </table>
+    <a href="{{ path('app_repons_new') }}">Create new</a>
+    </div>
+{% endblock %}
