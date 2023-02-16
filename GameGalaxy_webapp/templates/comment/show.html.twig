@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% extends 'Front/base.html.twig' %}
+ 
+{% block title %}Commentaire{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Afficher Blogs</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_blog_index') }}"> 
+                    Afficher tous les 
+                </a>
+            </div>
+            <div class="card-body">
+                <b class="text-muted"> commentaire: </b>
+                <p>{{ comment.content }}</p>
+                <b class="text-muted">Date de création :</b>
+                <p>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <b class="text-muted">Date de modification:</b>
+                <p>{{ blog.updatedAt ? blog.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

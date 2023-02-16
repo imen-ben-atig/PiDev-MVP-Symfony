@@ -1,0 +1,55 @@
+{% extends 'Black/base.html.twig' %}
+ 
+{% block title %}Blog index{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Blog Manager</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('blog_new') }}"> 
+                    Créer un nouveau blog 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>image</th>
+                        <th>Date Created</th>
+                        <th>Date Updated</th>
+                        <th width="240px">Action</th>
+                    </tr>
+                    {% for blog in blogs %}
+                    <tr>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.content }}</td>
+                        <td>{{ blog.image }}</td>
+                        <td>{{ blog.createdAt ? project.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ blog.updatedAt ? project.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <form method="post" action="{{ path('blog_delete', {'id': blog.id}) }}" onsubmit="return confirm('Etes-vous sûr de supprimer ce blog ?');">
+                                <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('project_show', {'id': blog.id}) }}">
+                                    Show
+                                </a>
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('blog_edit', {'id': blog.id}) }}">
+                                    Edit
+                                </a>
+ 
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ blog.id) }}">
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+ 
+{% endblock %}
