@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\MembreRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,19 +13,27 @@ class Membre
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    /**
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     */
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
-
+    /**
+     * @Assert\NotBlank(message="L'adresse email est obligatoire")
+     * @Assert\Email(message="L'adresse email n'est pas valide")
+     * @Assert\Length(max=255)
+     */
     #[ORM\Column(length: 255)]
     private ?string $email = null;
-
+    
     #[ORM\Column]
     private ?int $niveaucompte = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_naissance = null;
-
+     /**
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     * @Assert\Length(min=6, max=255)
+     */
     #[ORM\Column(length: 255)]
     private ?string $mdp_compte = null;
 
