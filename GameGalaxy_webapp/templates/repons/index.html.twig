@@ -6,9 +6,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date_rep</th>
-                <th>Contenu_rep</th>
-                <th>Status_rep</th>
+                <th>Date Repnse</th>
+                <th>Contenu Reponse</th>
+                <th>Status Reponse</th>
+                <th>Titre Reclamtion</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                 <td>{{ repon.dateRep ? repon.dateRep|date('Y-m-d') : '' }}</td>
                 <td>{{ repon.contenuRep }}</td>
                 <td>{{ repon.statusRep }}</td>
+                <td>{{ repon.getIdReclamation()}}</td>
                 <td>
                     <a type="button" class="btn btn-warning" href="{{ path('app_repons_show', {'id': repon.id}) }}">show</a>
                     <a type="button" class="btn btn-info" href="{{ path('app_repons_edit', {'id': repon.id}) }}">edit</a>

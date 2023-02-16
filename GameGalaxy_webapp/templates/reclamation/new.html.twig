@@ -35,7 +35,7 @@
 												<div class="form-group">
 													<div class="form-floating">
 													<a>Date et Heure</a>
-														{{form(form.date_rec,{'attr':{'class':'form-control datetimepicker'}})}}
+														{{form_widget(form.date_rec,{'attr':{'class':'form-control datetimepicker'}})}}
 														
 													</div>
 												</div>
@@ -58,7 +58,7 @@
 												</div>
 											</div>
                                             <div class="mt-4 mb-0">
-												<div class="d-grid" ztype="button" class="btn btn-primary">
+												<div class="d-grid" type="button" class="btn btn-primary">
 													{{ include('reclamation/_form.html.twig', {'button_label': 'Valider'}, {'class':'btn btn-success '}) }}
 												</div>
 											</div>
