@@ -1,6 +1,9 @@
 {% extends 'BACK/base.html.twig' %}
 
 {% block body %}
+<br><br>
+<br>
+<div class="container ">
     <h2 class="text-center mt-5 mb-3">Edit Produit</h2>
     <div class="card">
             <div class="card-header">
@@ -14,7 +17,6 @@
         </div>
 
     <a href="{{ path('app_produit_index') }}">back to list</a>
-    {{ include('produit/_delete_form.html.twig') }}
-
+</div>
 {% endblock %}
 

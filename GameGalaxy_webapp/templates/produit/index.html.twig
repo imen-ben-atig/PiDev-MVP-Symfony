@@ -34,7 +34,7 @@
 									<td>{{ produit.prix }}</td>
 									<td>{{ produit.description }}</td>
 									<td>{{ produit.stock }}</td>
-									<td>{{ produit.img }}</td>
+									<td><img src='{{ produit.img }}'></td>
 									<td>
 
 											<a class="btn btn-success" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>

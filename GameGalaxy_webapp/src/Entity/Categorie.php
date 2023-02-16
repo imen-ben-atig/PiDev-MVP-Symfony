@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -17,12 +19,16 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[assert\NotBlank(message:"Nom Obligatoire")]
+
     private ?string $nom_categorie = null;
 
     #[ORM\Column]
+    #[assert\NotBlank(message:"etat Obligatoire")]
     private ?int $etat = null;
 
     #[ORM\Column]
+    #[assert\NotBlank(message:"type Obligatoire")]
     private ?int $type = null;
 
     #[ORM\OneToMany(mappedBy: 'id_categorie', targetEntity: Produit::class)]

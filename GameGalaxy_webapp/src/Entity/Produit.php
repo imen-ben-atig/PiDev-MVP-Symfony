@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -15,18 +17,23 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[assert\NotBlank(message:"Nom Obligatoire")]
     private ?string $nom_produit = null;
 
     #[ORM\Column]
+    #[assert\NotBlank(message:"Prix Obligatoire")]
     private ?float $prix = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[assert\NotBlank(message:"Description Obligatoire")]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[assert\NotBlank(message:"Stock Obligatoire")]
     private ?int $stock = null;
 
     #[ORM\Column(length: 255)]
+    #[assert\NotBlank(message:"Image Obligatoire")]
     private ?string $img = null;
 
     #[ORM\ManyToOne(inversedBy: 'id_categorie')]
