@@ -26,6 +26,7 @@ class Produit
 
     #[ORM\Column(type: Types::TEXT)]
     #[assert\NotBlank(message:"Description Obligatoire")]
+    
     private ?string $description = null;
 
     #[ORM\Column]

@@ -27,6 +27,17 @@ class ProduitController extends AbstractController
             'produits' => $produitRepository->findAll(),
         ]);
     }
+
+
+
+    #[Route('/detail', name: 'app_front_produit_detail', methods: ['GET'])]
+    public function indexdetail(ProduitRepository $produitRepository): Response
+    {
+        return $this->render('produit\produit_detail.twig', [
+            'produits' => $produitRepository->findAll(),
+        ]);
+    }
+
     
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
