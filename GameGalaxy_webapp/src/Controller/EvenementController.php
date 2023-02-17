@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
+use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class EvenementController extends AbstractController
     {
         return $this->render('evenement/index_back.html.twig', [
             'evenements' => $evenementRepository->findAll(),
+            
         ]);
     }
 
@@ -49,10 +51,11 @@ class EvenementController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_evenement_show', methods: ['GET'])]
-    public function show(Evenement $evenement): Response
+    public function show(Evenement $evenement,ReservationRepository $reservationRepository): Response
     {
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
+            'reservations' => $reservationRepository->findAll(),
         ]);
     }
 
@@ -61,6 +64,7 @@ class EvenementController extends AbstractController
     {
         return $this->render('evenement/show_front.html.twig', [
             'evenement' => $evenement,
+            
         ]);
     }
 

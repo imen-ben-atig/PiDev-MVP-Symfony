@@ -5,82 +5,120 @@
 {% endblock %}
 
 {% block body %}
-    <!-- inner-hero start -->
-    <div class="inner-hero bg_img style--two" data-background="../FRONT/assets/images/elements/inner-hero-2.jpg">
-      <div class="shape position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/shape.png" alt="image"></div>
-    </div>
-    <!-- inner-hero end -->
+	<!-- inner-hero start -->
+	<div class="inner-hero bg_img style--two" data-background="../FRONT/assets/images/elements/inner-hero-2.jpg">
+		<div class="shape position-absolute"><img src="../Public/FRONT/assets/images/elements/inner-hero/shape.png" alt="image"></div>
+	</div>
+	<!-- inner-hero end -->
 
-    <!-- blog details section start -->
-    <section class="blog-details pb-120">
-      <div class="container">
-        <div class="row justify-content-center border-bottom pb-5">
-          <div class="col-12">
-		  <ul class="page-list">
-              <li><a href="index.html">Acceuil</a></li>
-              <li>Evenements</li>
-			  <li>{{ evenement.nom }}</li>
-            </ul>
-            <div class="blog-details__header">
-              <h2 class="blog-details__title">{{ evenement.nom }}</h2>
-			  
-              <div class="row mt-4">
-                <div class="col-lg-6">
-                  <ul class="meta-post">
-                    <li><a href="#0">{{ evenement.date ? evenement.date|date("M d, Y") : '' }}</a></li>
-                    <li>
-                      <a href="#0">Durée: {{ evenement.duree }} heure(s).</a>
-                    </li>
-					<li>
-                      <a href="#0">Capacité: {{ evenement.capacite }} personnes.</a>
-                    </li>
-					<li>
-                      <a href="#0">Type: {{ evenement.type }} </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="social-links">
-                    <li><span>Share :</span></li>
-                    <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
-                    <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-10 mt-50">
-            <div class="blog-details__content">
-              <h3 class="blog-details__sub-title">>{{ evenement.nom }}</h3>
-              <p>>{{ evenement.description }}</p>
-              </div>
-          </div>
-        </div><!-- row end -->
-        <div class="row justify-content-center mt-50">
-          <div class="col-lg-10">
-            <!-- <div class="author">
-              <div class="author__thumb">
-                <img src="assets\images\blog\author-b.png" alt="image">
-              </div>
-              <div class="author__content">
-                <span class="top-title">About Author</span>
-                <h2 class="name mb-3">Clark Howell</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui phasellus elit euismod lobortis amet, lectus. Lacus nulla nunc sapien quam.</p>
-                <ul class="social-links justify-content-start mt-4">
-                  <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
-                  <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
-                  <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
-                </ul>
-              </div> 
-            </div><!-- author end --> -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- blog details section end -->
+	<!-- blog details section start -->
+	<section class="blog-details pb-120">
+		<div class="container">
+			<div class="row justify-content-center border-bottom pb-5">
+				<div class="col-12">
+					<ul class="page-list">
+						<li>
+							<a href="index.html">Acceuil</a>
+						</li>
+						<li>Evenements</li>
+						<li>{{ evenement.nom }}</li>
+					</ul>
+					<div class="blog-details__header">
+						<h2 class="blog-details__title">{{ evenement.nom }}</h2>
+
+						<div class="row mt-4">
+							<div class="col-lg-6">
+								<ul class="meta-post">
+									<li>
+										<a href="#0">{{ evenement.date ? evenement.date|date("M d, Y") : '' }}</a>
+									</li>
+									<li>
+										<a href="#0">Durée:
+											{{ evenement.duree }}
+											heure(s).</a>
+									</li>
+									<li>
+										<a href="#0">Capacité:
+											{{ evenement.capacite }}
+											personnes.</a>
+									</li>
+									<li>
+										<a href="#0">Type:
+											{{ evenement.type }}
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-6">
+								<ul class="social-links">
+									<li>
+										<span>Share :</span>
+									</li>
+									<li>
+										<a href="#0">
+											<i class="fab fa-facebook-f"></i>
+										</a>
+									</li>
+									<li>
+										<a href="#0">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a href="#0">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</li>
+									<li>
+										<a href="#0">
+											<i class="fab fa-pinterest-p"></i>
+										</a>
+									</li>
+									<li>
+										<a href="#0">
+											<i class="fab fa-google-plus-g"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<button type="submit" class="submit-btn">Réserver</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-10 mt-50">
+					<div class="blog-details__content">
+						<h3 class="blog-details__sub-title">>{{ evenement.nom }}</h3>
+						<p>>{{ evenement.description }}</p>
+					</div>
+				</div>
+			</div>
+			<!-- row end -->
+			<div class="row justify-content-center mt-50">
+				<div
+					class="col-lg-10">
+					<!-- <div class="author">
+										              <div class="author__thumb">
+										                <img src="assets\images\blog\author-b.png" alt="image">
+										              </div>
+										              <div class="author__content">
+										                <span class="top-title">About Author</span>
+										                <h2 class="name mb-3">Clark Howell</h2>
+										                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui phasellus elit euismod lobortis amet, lectus. Lacus nulla nunc sapien quam.</p>
+										                <ul class="social-links justify-content-start mt-4">
+										                  <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
+										                  <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
+										                  <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
+										                  <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
+										                  <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
+										                </ul>
+										              </div> 
+										            </div><!-- author end -->
+					-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- blog details section end -->
 {% endblock %}

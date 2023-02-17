@@ -19,10 +19,12 @@ class Reservation
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank(message: "Selectionnez un membre!")]
     private ?Membre $id_membre = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank(message: "Selectionnez un évènement!")]
     private ?Evenement $id_evenement = null;
 
 

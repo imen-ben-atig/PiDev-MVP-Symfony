@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EvenementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
 class Evenement
@@ -13,23 +14,34 @@ class Evenement
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "Le nom est requis!")]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank (message: "La date est requise!")]
     private ?\DateTimeInterface $date = null;
 
+    
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank (message: "La description est requise!")]
+    #[Assert\Length (max:255)]
     private ?string $description = null;
 
+    
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank (message: "La durée est requise!")]
     private ?int $duree = null;
-
+    
     #[ORM\Column(nullable: true)]
+    #[Assert\NotBlank (message: "La capacité est requise!")]
+    #[Assert\Positive()]
     private ?int $capacite = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank (message: "Le type est requis!")]
+    #[Assert\Length (max:255)]
     private ?string $type = null;
 
     public function getId(): ?int

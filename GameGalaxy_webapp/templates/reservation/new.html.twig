@@ -26,12 +26,14 @@
 												<div class="col-md-6">
 													<div class="form-floating mb-3 mb-md-0">
 														{{form_widget(form.id_evenement,{'attr':{'class':'form-control'}})}}
+														{{form_errors(form.id_evenement)}}
 														<label for="inputFirstName">ID évènement</label>
 													</div>
 												</div>
                                                 <div class="col-md-6">
 													<div class="form-floating">
 														{{form_widget(form.id_membre,{'attr':{'class':'form-control'}})}}
+														{{form_errors(form.id_membre)}}
 														<label for="inputLastName">ID membre</label>
 													</div>
 												</div>
