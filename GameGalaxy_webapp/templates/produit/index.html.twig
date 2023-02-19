@@ -34,11 +34,12 @@
 									<td>{{ produit.prix }}</td>
 									<td>{{ produit.description }}</td>
 									<td>{{ produit.stock }}</td>
-									<td><img src='{{ produit.img }}'></td>
+									
+									<td><img  src='{{ produit.img }} ' width="300" height="200"></td>
 									<td>
 
-											<a class="btn btn-success" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
-											<a class="btn btn-info" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
+											<a class="btn btn-success" href="{{ path('app_produit_show', {'id': produit.id}) }}"><i class="bi bi-display"></i></a>
+											<a class="btn btn-info" href="{{ path('app_produit_edit', {'id': produit.id}) }}"><i class="bi bi-pencil-square"></i></a>
 
 											    {{ include('produit/_delete_form.html.twig') }}
 

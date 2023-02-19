@@ -1,0 +1,262 @@
+{% extends 'FRONT/base.html.twig' %}
+{% block body %}
+
+ 
+
+           
+    <!-- inner-hero start -->
+    <section class="inner-hero style--three">
+      <div class="clip-path-img"><img src='{{ produit.img }}' alt="image"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="single-game-hero text-center">
+              <img src='..\FRONT\assets\images\elements\header-el-5.png' >
+              <h2 class="game-name">{{ produit.nomProduit }}</h2>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- inner-hero end -->
+
+    <!-- game features section start -->
+    <div class="pt-120 pb-120">
+      <div class="container">
+        <div class="row mb-none-30">
+          <div class="col-lg-3 col-sm-6 mb-30">
+            <div class="feature-card bg_img" data-background="assets/images/elements/features/bg-1.png">
+              <div class="feature-card__icon">
+                <img src="..\FRONT\assets\images\elements\header-el-5.png" alt="img">
+              </div>
+              <div class="feature-card__content">
+                <p class="text-white">Ultimate Fun</p>
+              </div>
+            </div><!-- feature-card end -->
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-30">
+            <div class="feature-card bg_img" data-background="assets/images/elements/features/bg-2.png">
+              <div class="feature-card__icon">
+                <img src="..\FRONT\assets\images\elements\features\2.png" alt="img">
+              </div>
+              <div class="feature-card__content">
+                <p class="text-white">Exciting Expeditions</p>
+              </div>
+            </div><!-- feature-card end -->
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-30">
+            <div class="feature-card bg_img" data-background="assets/images/elements/features/bg-3.png">
+              <div class="feature-card__icon">
+                <img src="..\FRONT\assets\images\elements\features\3.png" alt="img">
+              </div>
+              <div class="feature-card__content">
+                <p class="text-white">Fun Treasure Hunts</p>
+              </div>
+            </div><!-- feature-card end -->
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-30">
+            <div class="feature-card bg_img" data-background="assets/images/elements/features/bg-4.png">
+              <div class="feature-card__icon">
+                <img src="..\FRONT\assets\images\elements\features\4.png" alt="img">
+              </div>
+              <div class="feature-card__content">
+                <p class="text-white">Thrilling updates</p>
+              </div>
+            </div><!-- feature-card end -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- game features section end -->
+
+    <!-- single game start -->
+    <section class="pt-120 position-relative">
+      <div class="bg-el"><img src="assets\images\bg\games-details.jpg" alt="image"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-header text-center has--bg">
+              <div class="header-image"><img src="assets\images\elements\header-el-6.png" alt="image"></div>
+              <h2 class="section-title">Welcome To {{ produit.nomProduit }}</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in justo at enim consectetur commodo. Fusce nisi sem, finibus id fermentum vel, semper et libero. Morbi in ex eget tortor pellentesque mattis. Donec id elit felis. Pellentesque mollis eu nisl vel hendrerit.</p>
+              <a href="#" class="cmn-btn style--two mt-5">PLAY NOW ON YOUR DEVICE</a>
+            </div>
+          </div>
+        </div>
+        <div class="single-game-slider">
+          <div class="single-slide">
+            <img src="assets\images\games\slider-1.jpg" alt="image">
+          </div><!-- single-slide end -->
+          <div class="single-slide">
+            <img src="assets\images\games\slider-1.jpg" alt="image">
+          </div><!-- single-slide end -->
+          <div class="single-slide">
+            <img src="assets\images\games\slider-1.jpg" alt="image">
+          </div><!-- single-slide end -->
+          <div class="single-slide">
+            <img src="assets\images\games\slider-1.jpg" alt="image">
+          </div><!-- single-slide end -->
+        </div><!-- single-game-slider end -->
+      </div>
+    </section>
+    <!-- single game end -->
+
+    <!-- game info start -->
+    <section class="pt-120 pb-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="section-header has--bg mb-5">
+              <div class="header-image justify-content-start"><img src="assets\images\elements\header-el-7.png" alt="image"></div>
+              <h2 class="section-title">Game Info</h2>
+            </div>
+            <p>Game Type {{ produit.getNomCategorie }}</p>
+            <h3 class="text-uppercase mt-3">Video 3D Games</h3>
+            <p class="mt-4">Compatible with</p>
+            <div class="game-compatible mt-3">
+              <div class="single">
+                <i class="fab fa-apple"></i>
+                <h6 class="caption">iOS</h6>
+              </div><!-- single end -->
+              <div class="single">
+                <i class="fab fa-android"></i>
+                <h6 class="caption">Android</h6>
+              </div><!-- single end -->
+              <div class="single">
+                <i class="fab fa-windows"></i>
+                <h6 class="caption">Windows</h6>
+              </div><!-- single end -->
+              <div class="single">
+                <i class="far fa-hdd"></i>
+                <h6 class="caption">Mac OS</h6>
+              </div><!-- single end -->
+            </div><!-- game-compatible end -->
+            <p class="mt-5">Language</p>
+            <div class="game-language mt-3">
+              <div class="single">
+                <img src="assets\images\elements\lang-1.png" alt="image">
+                <span class="text-white">English</span>
+              </div>
+              <div class="single">
+                <img src="assets\images\elements\lang-2.png" alt="image">
+                <span class="text-white">Chinese</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-lg-0 mt-4">
+            <div class="game-info-thumb">
+              <img src="assets\images\elements\mobile.png" alt="game-info-image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- game info end -->
+
+    <!-- trailer section start -->
+    <section class="pt-120 pb-120 position-relative">
+      <div class="bg-el"><img src="assets\images\bg\video.jpg" alt="image"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="section-header text-center has--bg">
+              <div class="header-image"><img src="assets\images\elements\header-el.png" alt="image"></div>
+              <h2 class="section-title">Game Trailers</h2>
+            </div>
+          </div>
+        </div><!-- row end -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="trailer">
+              <div class="trailer__thumb">
+                <img src="assets\images\bg\video-thumb.jpg" alt="image">
+                <a href="https://www.youtube.com/embed/ssrNcwxALS4" data-rel="lightcase:myCollection" class="play-icon"><i class="fas fa-play"></i></a>
+              </div>
+              <div class="cartoon"><img src="assets\images\elements\trailer-cartoon.png" alt="image"></div>
+            </div><!-- trailer end -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- trailer section end -->
+
+    <!-- others games section start -->
+    <section class="pb-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="view-all-header">
+              <h2 class="title">Other games you might like:</h2>
+              <a href="#0" class="link">All Games</a>
+            </div>
+          </div>
+        </div><!-- row end -->
+        <div class="row mt-50 mb-none-30 justify-content-center">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-1.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Tree Of Fortune</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-2.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Wild Fireworks</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-3.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Candy Burst</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-4.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Dragon Hatch</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-5.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Ninja vs Samurai</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-30">
+            <div class="game-small-card">
+              <div class="game-small-card__thumb">
+                <img src="assets\images\games\md-6.jpg" alt="image">
+              </div>
+              <div class="game-small-card__content">
+                <h6><a href="#0">Wild Inferno</a></h6>
+              </div>
+            </div><!-- game-small-card end -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- others games section end -->
+
+
+    	{% endblock %}

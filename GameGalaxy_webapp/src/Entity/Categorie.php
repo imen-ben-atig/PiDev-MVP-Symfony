@@ -20,6 +20,14 @@ class Categorie
 
     #[ORM\Column(length: 255)]
     #[assert\NotBlank(message:"Nom Obligatoire")]
+    /**
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un titre au mini de 5 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
 
     private ?string $nom_categorie = null;
 

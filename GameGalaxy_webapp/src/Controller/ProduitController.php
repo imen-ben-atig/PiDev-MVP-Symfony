@@ -28,18 +28,17 @@ class ProduitController extends AbstractController
         ]);
     }
 
-
-
-    #[Route('/detail', name: 'app_front_produit_detail', methods: ['GET'])]
-    public function indexdetail(ProduitRepository $produitRepository): Response
+    #[Route('/{id}/detail', name: 'app_produit_detail', methods: ['GET', 'POST'])]
+    public function detail(Produit $produit ): Response
     {
-        return $this->render('produit\produit_detail.twig', [
-            'produits' => $produitRepository->findAll(),
+        
+            return $this->renderForm('produit/detail.html.twig', [
+            'produit' => $produit,
+            
         ]);
     }
 
-    
-
+   
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProduitRepository $produitRepository): Response
     {
@@ -48,7 +47,10 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $produitRepository->save($produit, true);
+
+            
 
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,6 +68,8 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
+
+
 
     #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
@@ -94,4 +98,6 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+   
 }

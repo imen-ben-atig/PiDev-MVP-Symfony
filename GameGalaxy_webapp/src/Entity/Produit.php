@@ -15,23 +15,65 @@ class Produit
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    
 
     #[ORM\Column(length: 255)]
     #[assert\NotBlank(message:"Nom Obligatoire")]
+     /**
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un titre au mini de 5 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
+
     private ?string $nom_produit = null;
+   
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Prix Obligatoire")]
+     /**
+ * @ORM\Column(type="integer")
+ * @Assert\Regex(
+ *     pattern="/^[0-9]+$/",
+ *     message="Entrer des valeurs numériques uniquement."
+ * )
+ */
+
     private ?float $prix = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[assert\NotBlank(message:"Description Obligatoire")]
+    /**
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage=" Entrer un titre au mini de 10 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
+
     
     private ?string $description = null;
+    
+    
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Stock Obligatoire")]
+    /**
+
+    
+ * @Assert\Regex(
+ *      pattern="/^[0-9]+$/",
+ *      message="Entrez seulement des chiffres"
+ * )
+ * @ORM\Column(type="string", length=255)
+ */
+
+
     private ?int $stock = null;
+    
 
     #[ORM\Column(length: 255)]
     #[assert\NotBlank(message:"Image Obligatoire")]
