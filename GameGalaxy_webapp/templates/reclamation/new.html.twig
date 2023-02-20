@@ -56,17 +56,20 @@
 														
 													</div>
 												</div>
+													<div class="form-group">
+													<div class="form-floating">
+													<a for="inputLastName">User Name</a>
+														{{form_widget(form.username,{'attr':{'class':'form-control'}})}}
+														
+													</div>
+												</div>
 											</div>
                                             <div class="mt-4 mb-0">
 												<div class="d-grid" type="button" class="btn btn-primary">
 													{{ include('reclamation/_form.html.twig', {'button_label': 'Valider'}, {'class':'btn btn-success '}) }}
 												</div>
 											</div>
-										<div class="card-footer text-center py-3">
-											<div class="small">
-												<a type="button" class="btn btn-primary" href="{{ path('app_reclamation_index') }}">Retour à la liste</a>
-											</div>
-										</div>
+										
 									</div>
 								</div>
 							</div>

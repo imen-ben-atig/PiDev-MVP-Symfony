@@ -10,7 +10,8 @@
                 <th>Type</th>
                 <th>Date</th>
                 <th>Contenu</th>
-                <th>Statut_rec</th>
+                <th>Statut</th>
+                <th>User Name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +24,11 @@
                 <td>{{ reclamation.dateRec ? reclamation.dateRec|date('Y-m-d') : '' }}</td>
                 <td>{{ reclamation.contenuRec }}</td>
                 <td>{{ reclamation.statutRec }}</td>
+                <td>{{ reclamation.username }}</td>
                 <td>
                     <a type="button" class="btn btn-warning" href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
-                    <a type="button" class="btn btn-info" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                    {# <a type="button" class="btn btn-info" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a> #}
+                     <a type="button" class="btn btn-danger" href="{{ path('app_repons_new') }}">Repondre</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +39,5 @@
         </tbody>
     </table>
 
-     <centre><a type="button" class="btn btn-primary" href="{{ path('app_reclamation_new') }}">Create new</a></centre>
+
 {% endblock %}

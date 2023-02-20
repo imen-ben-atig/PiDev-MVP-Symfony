@@ -29,6 +29,9 @@ class Reclamation
     #[ORM\Column]
     private ?int $statut_rec = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $username = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,7 +98,18 @@ class Reclamation
     }
     public function __toString()
     {
-        return $this->getTitreRec()
-        ;
+        return $this->getUsername();
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }

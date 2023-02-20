@@ -17,6 +17,7 @@ class ReclamationType extends AbstractType
             ->add('date_rec')
             ->add('contenu_rec')
             ->add('statut_rec')
+            ->add('username')
         ;
     }
 
