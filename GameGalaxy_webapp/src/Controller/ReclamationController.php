@@ -13,7 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
 {
-    #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
+    #[Route('/', name: 'app_front_reclamation_index', methods: ['GET'])]
+    public function indexFront(ReclamationRepository $reclamationRepository): Response
+    {
+        return $this->render('reclamation/index_front.html.twig', [
+            'reclamation' => $reclamationRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/rec', name: 'app_reclamation_index', methods: ['GET'])]
     public function index(ReclamationRepository $reclamationRepository): Response
     {
         return $this->render('reclamation/index.html.twig', [
@@ -75,11 +83,5 @@ class ReclamationController extends AbstractController
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('/front', name: 'app_front_reclamation_index', methods: ['GET'])]
-    public function indexFront(ReclamationRepository $reclamationRepository): Response
-    {
-        return $this->render('reclamation/index_front.html.twig', [
-            'reclamations' => $reclamationRepository->findAll(),
-        ]);
-    }
+    
 }
