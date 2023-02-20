@@ -1,6 +1,7 @@
 {% extends 'Back/base.html.twig' %}
 {% block body %}
 <div class="container">
+<br>
         <h2 class="text-center mt-5 mb-3">Voir Categorie</h2>
         <div class="card">
             <div class="card-header">
@@ -30,9 +31,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_categorie_index') }}">back to list</a>
+    <a href="{{ path('app_categorie_index') }}">Back to list</a>
 
-    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
+    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Edit</a>
 
     
 {% endblock %}

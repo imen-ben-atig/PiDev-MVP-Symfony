@@ -11,12 +11,17 @@
                     Voir tous les produits
                 </a>
             </div>
+                <table class="table">
+        <tbody>
+            
                 <div class="card-body">
                     {{ include('produit/_form.html.twig', {'button_label': 'Update' , 'button_color': 'btn-outline-success'}) }}
                 </div>
         </div>
 
     <a href="{{ path('app_produit_index') }}">Back To List</a>
+</tbody>
+    </table>
 </div>
 
 {% endblock %}

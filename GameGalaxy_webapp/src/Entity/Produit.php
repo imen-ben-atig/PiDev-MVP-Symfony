@@ -6,6 +6,7 @@ use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -47,8 +48,8 @@ class Produit
     #[assert\NotBlank(message:"Description Obligatoire")]
     /**
      * @Assert\Length(
-     *      min = 10,
-     *      minMessage=" Entrer un titre au mini de 10 caracteres"
+     *      min = 20,
+     *      minMessage=" Entrer un titre au mini de 20 caracteres"
      *
      *     )
      * @ORM\Column(type="string", length=255)

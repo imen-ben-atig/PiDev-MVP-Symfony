@@ -1,12 +1,12 @@
 {% extends 'Back/base.html.twig' %}
-
 {% block body %}
-     <div class="container">
+<div class="container">
+<br>
         <h2 class="text-center mt-5 mb-3">Voir Produit</h2>
         <div class="card">
             <div class="card-header">
                 <a class="btn btn-outline-info float-right" href="{{ path('app_produit_index') }}"> 
-                    Voir Tous Produits
+                    Voir Tous produits
                 </a>
             </div>
 
@@ -38,11 +38,10 @@
             </tr>
         </tbody>
     </table>
-    </div>
-    </div>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
+    <a href="{{ path('app_produit_index') }}">Back to list</a>
 
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">Edit</a>
 
+    
 {% endblock %}

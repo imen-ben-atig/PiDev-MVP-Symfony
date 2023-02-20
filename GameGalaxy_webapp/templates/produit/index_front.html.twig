@@ -53,21 +53,12 @@
                     <div class="col-lg-5 col-md-6 mb-md-0 mb-3">
                       <select class="nice-select">
                         <option>All Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
+                        <option>jeu famille</option>
+                        <option>jeux groupe</option>
+                        <option>jeux Individuelle</option>
                       </select>
                     </div>
-                    <div class="col-lg-5 col-md-6">
-                      <select class="nice-select">
-                        <option>All Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
-                        <option>Platform</option>
-                      </select>
-                    </div>
+                    
                   </div>
                 </form>
               </div>
@@ -93,7 +84,7 @@
                     <div class="content">
                       <h3 class="game-card__title"><a href="{{ path('app_produit_detail', {'id': produit.id}) }}"><td>{{ produit.nomProduit }}</td></a></h3>
                       <h3 class="game-card__title"><a href="{{ path('app_produit_detail', {'id': produit.id}) }}"><td>{{ produit.prix }}</td></a></h3>
-                      <p>{{ produit.description }} <a href="{{ path('app_produit_detail', {'id': produit.id}) }}">Read More</a></p>
+                      <p>{{ produit.description|slice(0, 15) ~ '...' }} <a href="{{ path('app_produit_detail', {'id': produit.id}) }}">Read More</a></p>
                     </div>
                   </div>
                   <div class="game-card__ratings">
