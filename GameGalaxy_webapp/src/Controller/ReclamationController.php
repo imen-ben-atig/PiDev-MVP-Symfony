@@ -55,6 +55,13 @@ class ReclamationController extends AbstractController
             'reclamation' => $reclamation,
         ]);
     }
+    #[Route('/{id}', name: 'app_reclamation_show1', methods: ['GET'])]
+    public function show1(Reclamation $reclamation): Response
+    {
+        return $this->render('reclamation/historique.html.twig', [
+            'reclamation' => $reclamation,
+        ]);
+    }
 
     #[Route('/{id}/edit', name: 'app_reclamation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reclamation $reclamation, ReclamationRepository $reclamationRepository): Response

@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -15,21 +17,28 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "Le titre est requis!")]
     private ?string $titre_rec = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "Le type est requis!")]
     private ?string $type_rec = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank (message: "La date est requise!")]
     private ?\DateTimeInterface $date_rec = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank (message: "La description est requise!")]
+    #[Assert\Length (max:255)]
     private ?string $contenu_rec = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank (message: "Le status est requise!")]
     private ?int $statut_rec = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: "User Name est requise!")]
     private ?string $username = null;
 
     public function getId(): ?int
