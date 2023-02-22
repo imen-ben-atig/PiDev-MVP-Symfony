@@ -52,13 +52,13 @@
                     <div class="col-lg-2 mb-lg-0 mb-2"><span>SORT BY:</span></div>
                     <div class="col-lg-5 col-md-6 mb-md-0 mb-3">
                       <select class="nice-select">
+                     { % for produit in produits %}
                         <option>All Platform</option>
                         <option>jeu famille</option>
                         <option>jeux groupe</option>
                         <option>jeux Individuelle</option>
                       </select>
-                    </div>
-                    
+                    </div>                   
                   </div>
                 </form>
               </div>
@@ -76,11 +76,11 @@
           <div class="col-md-6 mb-40">
             <div class="game-card">
               <div class="game-card__thumb">
-              <img src='{{ produit.img }}'> </div>
+              <img src="{{asset('uploads/produits/'~ produit.img)}}" alt="photo"> </div>
               <div class="game-card__content">
                 <div class="game-card__details">
                   <div class="game-card__info">
-                    <div class="thumb"><img src='{{ produit.img }}'> </div>
+                    <div class="thumb"><img src="{{asset('uploads/produits/'~ produit.img)}}" alt="photo"> </div>
                     <div class="content">
                       <h3 class="game-card__title"><a href="{{ path('app_produit_detail', {'id': produit.id}) }}"><td>{{ produit.nomProduit }}</td></a></h3>
                       <h3 class="game-card__title"><a href="{{ path('app_produit_detail', {'id': produit.id}) }}"><td>{{ produit.prix }}</td></a></h3>
@@ -100,6 +100,8 @@
                   <p class="mb-2">Download now at</p>
                   <img src="..\FRONT\assets\images\elements\apple-btn.png" alt="image">
                   <img src="..\FRONT\assets\images\elements\google-btn.png" alt="image">
+									<button type="button"  <a href="{{ path('app_produit_detail', {'id': produit.id}) }}"class="btn btn-outline-light"style="border-radius: 50%">Ajouter Panier</a> </button>
+
                 </div>
               </div><!-- game-card__content end -->
             </div><!-- game-card end -->

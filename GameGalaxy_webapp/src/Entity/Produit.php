@@ -77,7 +77,6 @@ class Produit
     
 
     #[ORM\Column(length: 255)]
-    #[assert\NotBlank(message:"Image Obligatoire")]
     private ?string $img = null;
 
     #[ORM\ManyToOne(inversedBy: 'id_categorie')]

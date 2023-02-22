@@ -4,3 +4,4 @@
 produit_detail:
   path: /produit/{id}/detail
   controller: App\Controller\ProduitController::detail
+  

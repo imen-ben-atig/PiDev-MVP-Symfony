@@ -8,6 +8,8 @@ use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/produit')]
@@ -40,13 +42,37 @@ class ProduitController extends AbstractController
 
    
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProduitRepository $produitRepository): Response
+    public function new(Request $request, ProduitRepository $produitRepository, SluggerInterface $slugger): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('img')->getData();
+
+            // this condition is needed because the 'img' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($img) {
+                $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$img->guessExtension();
+
+                // Move the file to the directory where imgs are stored
+                try {
+                    $img->move(
+                        $this->getParameter('produit_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imgFilename' property to store the PDF file name
+                // instead of its contents
+                $produit->setImg($newFilename);
+            }
 
             $produitRepository->save($produit, true);
 
@@ -72,12 +98,36 @@ class ProduitController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
+    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $img = $form->get('img')->getData();
+
+            // this condition is needed because the 'img' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($img) {
+                $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$img->guessExtension();
+
+                // Move the file to the directory where imgs are stored
+                try {
+                    $img->move(
+                        $this->getParameter('produit_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imgFilename' property to store the PDF file name
+                // instead of its contents
+                $produit->setImg($newFilename);
+            }
             $produitRepository->save($produit, true);
 
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
@@ -98,6 +148,14 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
-
+    public function myControllerAction()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        return $this->render('my-template.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+    
+    
    
 }
