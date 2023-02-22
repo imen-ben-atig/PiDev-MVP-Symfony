@@ -23,11 +23,30 @@
                 <td>{{ reclamation.typeRec }}</td>
                 <td>{{ reclamation.dateRec ? reclamation.dateRec|date('Y-m-d') : '' }}</td>
                 <td>{{ reclamation.contenuRec }}</td>
-                <td>{{ reclamation.statutRec }}</td>
+                    <td>
+                    {% if reclamation.statutRec == 1 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                      {%  elseif reclamation.statutRec == 2 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>                        </div>
+                    </div>
+                    
+                      {% elseif reclamation.statutRec == 3 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    </td>
+                {# <td>{{ reclamation.statutRec }}</td> #}
                 <td>{{ reclamation.username }}</td>
                 <td>
                     <a type="button" class="btn btn-warning" href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
-                    {# <a type="button" class="btn btn-info" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a> #}
+                    <a type="button" class="btn btn-info" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
                      <a type="button" class="btn btn-danger" href="{{ path('app_repons_new') }}">Repondre</a>
                 </td>
             </tr>

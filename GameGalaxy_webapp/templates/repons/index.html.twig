@@ -19,6 +19,24 @@
                 <td>{{ repon.id }}</td>
                 <td>{{ repon.dateRep ? repon.dateRep|date('Y-m-d') : '' }}</td>
                 <td>{{ repon.contenuRep }}</td>
+                 <td>
+                {% if repon.statusRep == 1 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                      {%  elseif repon.statusRep == 2 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>                        </div>
+                    </div>
+                    
+                      {% elseif repon.statusRep == 3 %}
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    {% endif %} </td>
                 <td>{{ repon.statusRep }}</td>
                 <td>{{ repon.getIdReclamation()}}</td>
                 <td>

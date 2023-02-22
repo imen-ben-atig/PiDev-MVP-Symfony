@@ -5,7 +5,8 @@ namespace App\Entity;
 use App\Repository\ReponsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: ReponsRepository::class)]
 class Repons
 {
@@ -15,12 +16,16 @@ class Repons
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank (message: "La date est requise!")]
     private ?\DateTimeInterface $date_rep = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank (message: "La description est requise!")]
+    #[Assert\Length (max:255)]
     private ?string $contenu_rep = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank (message: "Le status est requise!")]
     private ?int $status_rep = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]

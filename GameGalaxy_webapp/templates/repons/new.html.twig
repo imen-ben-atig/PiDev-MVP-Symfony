@@ -21,8 +21,12 @@
 											{{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
 												<div class="col-md-6">
 													<div class="form-floating">
+													{% if form_errors(form.date_rep) %}
+														{{form_errors(form.date_rep,{'attr':{'class':'form-control'}})}}
 														{{form_widget(form.date_rep,{'attr':{'class':'form-control datetimepicker'}})}}
+														
 														<label for="inputLastName">Date et Heure</label>
+														{% endif %}
 													</div>
 												</div>
 											</div>
@@ -30,14 +34,20 @@
 											<div class="row mb-3">
 												<div class="col-md-6">
 													<div class="form-floating mb-3 mb-md-0">
+													{% if form_errors(form.contenu_rep) %}
+														{{form_errors(form.contenu_rep,{'attr':{'class':'form-control'}})}}
 														{{form_widget(form.contenu_rep,{'attr':{'class':'form-control'}})}}
 														<label for="inputFirstName">Contenu</label>
+														{% endif %}
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-floating">
+													{% if form_errors(form.status_rep) %}
+														{{form_errors(form.status_rep,{'attr':{'class':'form-control'}})}}
 														{{form_widget(form.status_rep,{'attr':{'class':'form-control'}})}}
 														<label for="inputLastName">Status</label>
+														{% endif %}
 													</div>
 												</div>
 											</div>

@@ -35,6 +35,7 @@ class Reclamation
 
     #[ORM\Column]
     #[Assert\NotBlank (message: "Le status est requise!")]
+    #[Assert\Choice(choices: [1, 2, 3])]
     private ?int $statut_rec = null;
 
     #[ORM\Column(length: 255)]
