@@ -1,0 +1,93 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}
+    Comptes
+{% endblock %}
+
+{% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Evenements
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Pseudo</th>
+                                <th>email</th>
+                                <th>niveau_compte</th>
+                                <th>date_naissance</th>
+                                <th>mdp_compte</th>
+                                <th>token</th>
+                                <th>date_token</th>
+<th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Pseudo</th>
+                                <th>email</th>
+                                <th>niveau_compte</th>
+                                <th>date_naissance</th>
+                                <th>mdp_compte</th>
+                                <th>token</th>
+                                <th>date_token</th>
+<th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for evenement in evenements %}
+                                <tr>
+                                    <td>{{ membre.id }}</td>
+                                    <td>{{ membre.pseudo }}</td>
+                                    <td>{{ membre.email }}</td>
+                                    <td>{{ membre.niveau_compte}}</td>
+					<td>{{ evenement.date_naissance ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ membre.mdp_compte}}</td>
+                                    <td>{{ membre.token}}</td>
+                                    <td>{{ membre.date_token  ? evenement.date|date('Y-m-d H:i:s') : ''  }}</td>
+                                    <td>
+                                        <a href="{{ path('app_membre_show', {'id': membre.id}) }}">Détails</a>
+                                        <a href="{{ path('app_membre_edit', {'id': membre.id}) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                    <td>
+                                        N/A
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btn btn-primary" href="{{ path('app_membre_new') }}">Créer un compte</a>
+                </div>
+            </div>
+        </main>
+    {% endblock %}

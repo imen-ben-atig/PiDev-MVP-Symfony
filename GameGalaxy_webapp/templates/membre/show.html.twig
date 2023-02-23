@@ -1,0 +1,70 @@
+
+{% extends 'BACK/base.html.twig' %}
+{% block title %}
+	Détails de l'utilisateur
+{% endblock %}
+
+{% block body %}
+
+   <div id="layoutSidenav_content">
+		<main>
+			<div class="card-body">
+				<table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ membre.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ membre.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ membre.email }}</td>
+            </tr>
+            <tr>
+                <th>Niveaucompte</th>
+                <td>{{ membre.niveaucompte }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ membre.dateNaissance ? membre.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mdp_compte</th>
+                <td>{{ membre.mdpCompte }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ membre.token }}</td>
+            </tr>
+            <tr>
+                <th>Date_token</th>
+                <td>{{ membre.dateToken ? membre.dateToken|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center">
+    <a class="btn btn-primary"  href="{{ path('app_membre_index') }}" >back to list</a>
+    <a class="btn btn-success mx-1"  href="{{ path('app_membre_edit', {'id': membre.id}) }}">Editer</a>
+    
+        {{ include('membre/_delete_form.html.twig', {'class':'btn btn-danger '}) }}
+
+</div>
+
+    
+	
+    
+    
+    
+  
+    
+{% endblock %}
+
+
+
+
+
+

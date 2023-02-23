@@ -1,0 +1,113 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}
+	Membre
+{% endblock %}
+
+{% block body %}
+   <div id="layoutSidenav_content">
+   		<main>
+			<div class="card-body">
+        <h1>Créer un nouveau membre</h1>
+        <form method="post">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.pseudo) }}
+                {{ form_widget(form.pseudo, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.niveaucompte) }}
+                {{ form_widget(form.niveaucompte, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.mdp_compte) }}
+                {{ form_widget(form.mdp_compte, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.date_naissance) }}
+                {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control'}}) }}
+            </div>
+			 <div class="form-group">
+    		 {{ form_label(form.token) }}
+     		{{ form_widget(form.token, {'attr': {'class': 'form-control'}}) }}
+ 			</div>
+			 <div class="form-group">
+ 			{{ form_label(form.date_token) }}
+			{{ form_widget(form.date_token, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			<div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success mx-1">Créer</button>
+			  <a class="btn btn-primary"  href="{{ path('app_membre_index') }}" >back to list</a>
+			  </div>
+            {{ form_end(form) }}
+        </form>
+    </div>
+	</div>
+{% endblock %}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    
+	
+	
+	
+	
+	
+    
+    
+    
+    
+    
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
