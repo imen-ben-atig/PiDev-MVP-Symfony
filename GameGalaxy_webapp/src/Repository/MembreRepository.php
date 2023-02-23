@@ -54,13 +54,13 @@ class MembreRepository extends ServiceEntityRepository
         ;
     }
 
-//    public function findOneBySomeField($value): ?Membre
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findOneByid($value): ?Membre
+   {
+       return $this->createQueryBuilder('m')
+           ->andWhere('m.id = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 }

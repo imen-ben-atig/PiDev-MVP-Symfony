@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class EvenementType extends AbstractType
 {
@@ -15,12 +16,23 @@ class EvenementType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('date')
+            ->add('date', DateTimeType::class, [
+                'data' => new \DateTime(),
+                'attr' => [
+                    'class' => 'datetimepicker',
+                ],
+                'constraints' => [
+                    new GreaterThanOrEqual([
+                        'value' => 'today',
+                        'message' => "La date et l'heure doivent être ultérieures! ",
+                    ]),
+                ],
+            ])
             ->add('description')
             ->add('duree')
             ->add('capacite')
             ->add('type')
-            ->add('save',SubmitType::class, [
+            ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],
             ]);
     }

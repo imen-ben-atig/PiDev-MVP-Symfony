@@ -16,10 +16,8 @@ class ReservationType extends AbstractType
         $builder
             
             ->add('id_membre')
-            ->add('id_evenement')
-            ->add('save',SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary'],
-            ]);
+            ->add('id_evenement');
+            
         
     }
 

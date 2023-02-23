@@ -34,19 +34,10 @@
 													</div>
 												</div>
 												<div class="col-md-6">
-													<div class="form-floating">
-														<script>
-															$(function () {
-																$('input[data-provide="datetimepicker"]').datetimepicker();
-																});
-														</script>
-														{{ form_widget(form.date, {
-															'attr': {
-																'data-provide': 'datetimepicker',
-																'data-date-format': 'DD MM YYYY',
-																'data-default-date': '01 Jan 2023'
-															}
-														}) }}
+													<div class="form-floating " >
+														
+														Date et Heure
+														{{ form_widget(form.date) }}
 
 
 														{% if form_errors(form.date) %}
@@ -54,7 +45,7 @@
 																{{form_errors(form.date)}}
 															</div>
 														{% endif %}
-														<label for="inputLastName">Date et Heure</label>
+														
 													</div>
 												</div>
 											</div>

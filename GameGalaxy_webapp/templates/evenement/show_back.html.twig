@@ -57,7 +57,7 @@
 			<div class="card mb-4">
 				<div class="card-header">
 					<i class="fas fa-table me-1"></i>
-					Réservations
+					Réservations pour l'évènement "{{ evenement.nom }}"
 				</div>
 				<div class="card-body">
 					<table id="datatablesSimple">
@@ -102,12 +102,19 @@
 									<td>
 										N/A
 									</td>
+									<td>
+										N/A
+									</td>
+									<td>
+										N/A
+									</td>
+									
 									
 								</tr>
 							{% endfor %}
 						</tbody>
 					</table>
-					<a class="btn btn-primary" href="{{ path('app_reservation_new') }}">Créer une réservation</a>
+					
 				</div>
 			</div>
 		</main>

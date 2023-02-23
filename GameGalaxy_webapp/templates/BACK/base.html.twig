@@ -16,10 +16,6 @@
 			<link
 			href="{{ asset('BACK/css/styles.css')}}" rel="stylesheet"/>
 
-			{# Include the CSS file for the datepicker library #}
-			<link rel="stylesheet" href="{{ asset('vendor/eonasdan/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
-
-
 		{% endblock %}
 		{% block javascripts %}
 			<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -30,18 +26,7 @@
 			<script src="{{ asset('BACK/assets/demo/chart-bar-demo.js')}}"></script>
 			<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 			<script src="{{ asset('BACK/js/datatables-simple-demo.js')}}"></script>
-			{# Include jQuery and Moment.js (required by the datepicker library) #}
-			<script src="{{ asset('vendor/components/jquery/jquery.min.js') }}"></script>
-			<script src="{{ asset('vendor/moment/min/moment.min.js') }}"></script>
-			<script src="{{ asset('vendor/eonasdan/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-
-
-			<script>
-				$(function () {
-				$('#datetimepicker').datetimepicker();
-				});
-			</script>
-			
+	
 		{% endblock %}
 	</head>
 	<body class="sb-nav-fixed">
@@ -127,7 +112,7 @@
 								<div class="collapse" id="collapseEvenements" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="/evenement/back">Evenements</a>
-										<a class="nav-link" href="/reservation">Réservations</a>
+										<a class="nav-link" href="/reservation/back">Réservations</a>
 									</nav>
 								</div>
 
