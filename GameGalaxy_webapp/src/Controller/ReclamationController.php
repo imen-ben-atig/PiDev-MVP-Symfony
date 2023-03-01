@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\SearchType;
 
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
@@ -38,7 +39,7 @@ class ReclamationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reclamationRepository->save($reclamation, true);
-
+            $reclamationRepository->sms();
             return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -90,6 +91,52 @@ class ReclamationController extends AbstractController
         }
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+        
+    }
+    // #[Route('/TriAsc', name: 'reclamationTriCroi')]
+    // public function triStatutCroissant(Request $request, PaginatorInterface $paginator)
+    // {
+    //     $donnees = $this->getDoctrine()->getRepository(Reclamation::class)->findBy(['active' => 'true'], array('statut_rec' => 'ASC'));
+    //     $produits = $paginator->paginate(
+    //         $donnees,
+    //         $request->query->getInt('page', 1),
+    //         4
+    //     );
+    //     return $this->render('reclamation/index.html.twig', ['r' => $reclamations]);
+    // }
+    #[Route('search', name: 'reclamation_search')]
+
+    public function search(ReclamationRepository $reclamationRepository, Request $request): Response
+    {
+        $issetTitre = isset($_GET['titre']);
+        if ($issetTitre) {
+            
+            $reclamations = $reclamationRepository->searchReclamations($_GET['titre']);
+    
+            return $this->render('reclamation/index.html.twig', [
+                'reclamations' => $reclamations,
+            ]);
+        }
+    
+        return $this->render('reclamation/search.html.twig', [
+            'reclamationsearch' => $form->createView(),
+        ]);
     }
     
+        //     //sms
+        // #[Route('/admin/traiter/{id}', name: 'reclamationtraite')]
+        //     function Traiter(ReclamationsRepository $repository, $id, Request $request, ManagerRegistry $doctrine, UserRepository $repo)
+        //     {
+        //         $user = new User();
+        //         $user->eraseCredentials();
+        //         $reclamation = new Reclamations();
+        //         $user = $repo->find($id);
+        //         $em = $doctrine->getManager();
+        //         $em->flush();
+        //         $repository->sms();
+        //         $reclamation->setEtat("yes");
+        //         $em->flush();
+        //         $this->addFlash('danger', 'reponse envoyée avec succées');
+        //         return $this->redirectToRoute('app_reclamations_index');
+        //     }
 }

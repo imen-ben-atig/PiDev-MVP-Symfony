@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53619c4978cd65befeeb18b8314e4cdf",
+    "content-hash": "0f261403c581060b30bab0cd316309f2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6051,16 +6051,16 @@
         },
         {
             "name": "symfony/runtime",
-            "version": "v5.4.19",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/runtime.git",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486"
+                "reference": "da8ebb6c2ca375c19a915527fb1b20332b668151"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/runtime/zipball/a33478ef6d8e6ea642449001949aafd330ca0486",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486",
+                "url": "https://api.github.com/repos/symfony/runtime/zipball/da8ebb6c2ca375c19a915527fb1b20332b668151",
+                "reference": "da8ebb6c2ca375c19a915527fb1b20332b668151",
                 "shasum": ""
             },
             "require": {
@@ -6108,7 +6108,7 @@
             "description": "Enables decoupling PHP applications from global state",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/runtime/tree/v5.4.19"
+                "source": "https://github.com/symfony/runtime/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -6124,7 +6124,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-20T16:47:48+00:00"
+            "time": "2023-01-24T14:02:46+00:00"
         },
         {
             "name": "symfony/security-bundle",
@@ -7855,6 +7855,55 @@
                 }
             ],
             "time": "2023-02-08T07:49:20+00:00"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "6.44.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:twilio/twilio-php.git",
+                "reference": "08aad5f377e2245b9cd7508e7762d95e7392fa4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/08aad5f377e2245b9cd7508e7762d95e7392fa4d",
+                "reference": "08aad5f377e2245b9cd7508e7762d95e7392fa4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=7.0 < 10"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "https://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2023-02-22T19:59:53+00:00"
         },
         {
             "name": "webmozart/assert",
