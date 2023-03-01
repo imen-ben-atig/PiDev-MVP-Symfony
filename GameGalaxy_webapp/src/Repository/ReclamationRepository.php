@@ -56,7 +56,7 @@ class ReclamationRepository extends ServiceEntityRepository
                         // A Twilio phone number you purchased at twilio.com/console
                         'from' => '+12762862473',
                         // the body of the text message you'd like to send
-                        'body' => 'votre reclamation a été traité merci de nous contacter pour plus de détail!'
+                        'body' => 'Une nouvelle reclamation a été ajouter merci de consulter la liste des reclamations pour plus de detail!'
                     ]
                 );
             }
