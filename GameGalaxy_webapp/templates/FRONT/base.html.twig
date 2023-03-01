@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-
+		<meta property="og:image" content="FRONT/assets/images/games/3.jpg" />
 		<title>
 			{% block title %}TITLE
 			{% endblock %}
@@ -36,6 +36,12 @@
 			rel="stylesheet" href="{{asset('FRONT/assets/css/vendor/slick.css')}}">
 			<!-- style main css -->
 			<link rel="stylesheet" href="{{asset('FRONT/assets/css/main.css')}}">
+			<!-- METIER SHARE css -->
+			<link rel="stylesheet" href="{{asset('share42.css')}}">
+<!-- METIER FULL CALENDAR API css -->
+			<link href='fullcalendar/core/main.css' rel='stylesheet' />
+<link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
+
 		{% endblock %}
 
 		{% block javascripts %}
@@ -57,6 +63,10 @@
 			<script src="{{asset('http://rexbd.net/html/sporcia/demo/assets/js/vendor/jquery.paroller.min.js')}}"></script>
 			<!-- custom js -->
 			<script src="{{asset('FRONT/assets/js/app.js')}}"></script>
+			<script src="{{asset('share42.js')}}"></script>
+			<!-- METIER SHARE js -->
+			<script type="text/javascript" src="share42.js"></script>
+		
 		{% endblock %}
 	</head>
 	<body>

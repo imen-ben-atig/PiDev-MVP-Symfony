@@ -18,6 +18,7 @@ class EvenementType extends AbstractType
             ->add('nom')
             ->add('date', DateTimeType::class, [
                 'data' => new \DateTime(),
+                'date_widget'=> 'single_text',
                 'attr' => [
                     'class' => 'datetimepicker',
                 ],
