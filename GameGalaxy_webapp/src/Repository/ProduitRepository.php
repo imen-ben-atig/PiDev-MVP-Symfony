@@ -38,6 +38,59 @@ class ProduitRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
+    public function findByProductName($term)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.nom LIKE :term')
+            ->setParameter('term', '%'.$term.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    
+    public function findByCategorie($categorieId)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.categorie = :categorieId')
+            ->setParameter('categorieId', $categorieId)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    public function search($searchTerm)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.nom LIKE :searchTerm OR p.description LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findByFilters($filters)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        if (isset($filters['nom_produit'])) {
+            $qb->andWhere('p.nom_produit LIKE :nom_produit')
+                ->setParameter('nom_produit', '%' . $filters['nom_produit'] . '%');
+        }
+
+        if (isset($filters['prix_min'])) {
+            $qb->andWhere('p.prix >= :prix_min')
+                ->setParameter('prix_min', $filters['prix_min']);
+        }
+
+        if (isset($filters['prix_max'])) {
+            $qb->andWhere('p.prix <= :prix_max')
+                ->setParameter('prix_max', $filters['prix_max']);
+        }
+
+        if (isset($filters['categorie'])) {
+            $qb->andWhere('p.id_categorie = :categorie')
+                ->setParameter('categorie', $filters['categorie']);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Produit[] Returns an array of Produit objects

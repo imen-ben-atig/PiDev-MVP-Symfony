@@ -11703,3 +11703,13 @@ body {
   width:200px;
   height:auto;
 }
+/* Style for the stars */
+.fa-star,
+.fa-star-half-alt {
+    color: orange;
+}
+
+/* Style for the empty stars */
+.fa-star.empty {
+    color: gray;
+}

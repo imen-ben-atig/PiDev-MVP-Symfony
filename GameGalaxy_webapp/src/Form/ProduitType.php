@@ -35,17 +35,16 @@ class ProduitType extends AbstractType
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                        ],
+                        
                     ])
                 ],
             ])
             
             // ...
             ->add('id_categorie')
-        ;
+            ->add('rating')    
+            ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

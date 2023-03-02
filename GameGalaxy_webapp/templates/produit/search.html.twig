@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Recherche de produits</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form.query, {'attr': {'placeholder': 'Recherche de produits...'}}) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
+
+    {% if produits is not empty %}
+        <h2>Résultats de la recherche pour "{{ query }}" :</h2>
+
+        <ul>
+            {% for produit in produits %}
+                <li>{{ produit.nom_produit }} ({{ produit.prix }} €)</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun produit trouvé pour "{{ query }}".</p>
+    {% endif %}
+{% endblock %}

@@ -11,6 +11,9 @@
 				<a class="btn btn-outline-primary" href="{{ path('app_produit_new') }}">
 					Ajouter noveau produit
 				</a>
+				 <a class="btn btn-outline-primary" href="{{ path('app_produit_tri_par_nom') }}">
+        Trier par nom
+    </a>
 			</div>
 			<div class="container m-20">
 				<div class="card-body">
@@ -24,6 +27,7 @@
 								<th>Description</th>
 								<th>Stock</th>
 								<th>Categorie</th>
+								<th>Rating</th>
 								<th>Image</th>
 							</tr>
 						</thead>
@@ -36,6 +40,8 @@
 									<td>{{ produit.description }}</td>
 									<td>{{ produit.stock }}</td>
 									<td>{{ produit.getIdCategorie }}</td>
+									<td>{{ produit.rating }}</td>
+
 									<td><img  src="{{asset('uploads/produits/'~ produit.img)}}" alt="photo" width="300" height="200"></td>
 
 									<td>

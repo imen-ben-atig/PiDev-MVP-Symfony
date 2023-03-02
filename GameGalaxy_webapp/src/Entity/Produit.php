@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
-
-
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -16,11 +14,10 @@ class Produit
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
 
     #[ORM\Column(length: 255)]
     #[assert\NotBlank(message:"Nom Obligatoire")]
-     /**
+    /**
      * @Assert\Length(
      *      min = 3,
      *      minMessage=" Entrer un titre au mini de 5 caracteres"
@@ -28,20 +25,17 @@ class Produit
      *     )
      * @ORM\Column(type="string", length=255)
      */
-
     private ?string $nom_produit = null;
-   
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Prix Obligatoire")]
-     /**
- * @ORM\Column(type="integer")
- * @Assert\Regex(
- *     pattern="/^[0-9]+$/",
- *     message="Entrer des valeurs numériques uniquement."
- * )
- */
-
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Entrer des valeurs numériques uniquement."
+     * )
+     */
     private ?float $prix = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -54,34 +48,28 @@ class Produit
      *     )
      * @ORM\Column(type="string", length=255)
      */
-
-    
     private ?string $description = null;
-    
-    
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Stock Obligatoire")]
     /**
-
-    
- * @Assert\Regex(
- *      pattern="/^[0-9]+$/",
- *      message="Entrez seulement des chiffres"
- * )
- * @ORM\Column(type="string", length=255)
- */
-
-
+     * @Assert\Regex(
+     *      pattern="/^[0-9]+$/",
+     *      message="Entrez seulement des chiffres"
+     * )
+     * @ORM\Column(type="string", length=255)
+     */
     private ?int $stock = null;
-    
 
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
-    #[ORM\ManyToOne(inversedBy: 'id_categorie')]
+    #[ORM\ManyToOne(targetEntity: Categorie::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $id_categorie = null;
+
+    #[ORM\Column]
+    private ?float $rating = null;
 
     public function getId(): ?int
     {
@@ -136,26 +124,38 @@ class Produit
         return $this;
     }
 
-    public function getImg(): ?string
+     public function getImg(): ?string
+     {
+         return $this->img;
+     }
+
+     public function setImg(string $img): self
+     {
+         $this->img = $img;
+
+         return $this;
+     }
+
+     public function getIdCategorie(): ?Categorie
+        {
+         return $this->id_categorie;
+        }
+
+     public function setIdCategorie(?Categorie $id_categorie): self
+     {
+     $this->id_categorie = $id_categorie;
+
+         return $this;
+     }
+
+    public function getRating(): ?float
     {
-        return $this->img;
+        return $this->rating;
     }
 
-    public function setImg(string $img): self
+    public function setRating(float $rating): self
     {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    public function getIdCategorie(): ?Categorie
-    {
-        return $this->id_categorie;
-    }
-
-    public function setIdCategorie(?Categorie $id_categorie): self
-    {
-        $this->id_categorie = $id_categorie;
+        $this->rating = $rating;
 
         return $this;
     }
