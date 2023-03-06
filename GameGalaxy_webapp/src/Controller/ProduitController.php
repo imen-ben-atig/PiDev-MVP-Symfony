@@ -12,12 +12,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategorieRepository;
-use Doctrine\Common\Annotations\Annotation\Attributes;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 
 
@@ -37,26 +31,26 @@ class ProduitController extends AbstractController
     #[Route('/front', name: 'app_front_produit_index', methods: ['GET'])]
     public function indexFront(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, Request $request): Response
     {
-        $searchTerm = $request->query->get('search');
-        $categoryId = $request->query->get('categoryId');
-    
-        if ($searchTerm) {
-            $produits = $produitRepository->searchByTerm($searchTerm);
-        } elseif ($categoryId) {
-            $produits = $produitRepository->findBy(['categorie' => $categoryId]);
+        $categorieId = $request->query->get('categorieId');
+        
+        if ($categorieId) {
+            // Get the categorie object based on the selected categorie id
+            $categorie = $categorieRepository->find($categorieId);
+            $produits = $produitRepository->findByCategorie($categorie);
         } else {
             $produits = $produitRepository->findAll();
         }
-    
+        
         $categories = $categorieRepository->findAll();
-    
+        
         return $this->render('produit/index_front.html.twig', [
             'produits' => $produits,
             'categories' => $categories,
-            'searchTerm' => $searchTerm,
+            'selectedcategorieId' => $categorieId,
         ]);
     }
-    
+
+        
     public function search(Request $request, ProduitRepository $produitRepository)
 {
     $searchTerm = $request->query->get('games-search-text');
@@ -192,7 +186,7 @@ class ProduitController extends AbstractController
     }
     public function myControllerAction()
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $categories = $this->getDoctrine()->getRepository(categorie::class)->findAll();
         return $this->render('my-template.html.twig', [
             'categories' => $categories,
         ]);
@@ -206,56 +200,7 @@ public function triParNom(ProduitRepository $produitRepository): Response
     ]);
 }
     
-//************************************************************ */
-    //Ajouter un produit apartir du json
 
-    //add Produit JSON
-    #[Route('/addProduitJSON', name: 'add_produit', methods: ['GET','POST'])]
-
-    public function ajouterproduit(Request $request){
-        $produit = new produit();
-        $nom_produit = $request->query->get('nom_produit');
-        $description = $request->query->get('description');
-        //$img= $request->query->get('img');
-        $prix = $request->query->get('prix');
-        $stock = $request->query->get('stock');
-        $rating = $request->query->get('rating');
-      //  $image = $request->query->get('image');
-    
-        $produit->setNomProduit($nom_produit);
-        $produit->setDescription($description);
-       // $produit->setImg($img);
-        $produit->setPrix($prix);
-        $produit->setStock($stock);
-        $produit->setRating($rating);
-       // $produit->setImage($image);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($produit);
-        $em->flush();
-        $serializer = new Serializer ([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($produit);
-        return new JsonResponse($formatted);
-    
-    }
-    
-        //show avec Json
-    
-        #[Route('/showproduitJSON', name: 'showproduitJSON', methods: ['GET'])]
-        public function listproduitJSON( SerializerInterface $serializer, ProduitRepository $produitRepository): JsonResponse
-        {
-            $repository= $this->getDoctrine()->getRepository(produit::class);
-            $produit = $repository->findAll();
-            $json = $serializer->serialize($produit, 'json', [
-                'circular_reference_handler' => function ($object) {
-                    return $object->getId();
-                },
-                'attributes' => ['nom_produit', 'prix', 'description','stock','img','rating']
-            ]);
-        
-            return new JsonResponse($json, Response::HTTP_OK, [], true);
-        }
-        
-    
 //*************************************************************************** */    
  
 }

@@ -61,14 +61,15 @@ class Produit
      */
     private ?int $stock = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $img = null;
+     #[ORM\Column(length: 255)]
+     private ?string $img = null;
 
-    #[ORM\ManyToOne(targetEntity: Categorie::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $id_categorie = null;
+     #[ORM\ManyToOne(targetEntity: Categorie::class)]
+     #[ORM\JoinColumn(nullable: false)]
+     private ?Categorie $id_categorie = null;
 
     #[ORM\Column]
+    #[assert\NotBlank(message:"Stock Obligatoire")]
     private ?float $rating = null;
 
     public function getId(): ?int
@@ -124,29 +125,29 @@ class Produit
         return $this;
     }
 
-     public function getImg(): ?string
-     {
-         return $this->img;
-     }
+      public function getImg(): ?string
+      {
+          return $this->img;
+      }
 
-     public function setImg(string $img): self
-     {
-         $this->img = $img;
+      public function setImg(string $img): self
+      {
+          $this->img = $img;
 
-         return $this;
-     }
+          return $this;
+      }
 
-     public function getIdCategorie(): ?Categorie
+      public function getIdCategorie(): ?Categorie
         {
-         return $this->id_categorie;
-        }
+      return $this->id_categorie;
+         }
 
-     public function setIdCategorie(?Categorie $id_categorie): self
-     {
-     $this->id_categorie = $id_categorie;
+      public function setIdCategorie(?Categorie $id_categorie): self
+      {
+      $this->id_categorie = $id_categorie;
 
-         return $this;
-     }
+      return $this;
+      }
 
     public function getRating(): ?float
     {
