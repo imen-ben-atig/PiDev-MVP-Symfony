@@ -16,11 +16,20 @@ class CategorieType extends AbstractType
         '+16ans' => '+16ans',
     ];
 
+   
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom_categorie')
-            ->add('etat')
+            ->add('etat', ChoiceType::class, [
+                'choices' => [
+                    'Enabled' => 1,
+                    'Disabled' => 0,
+                ],
+                'expanded' => true,
+                'multiple' => false,
+            ])
             ->add('type', ChoiceType::class, [
                 'choices' => self::$typeChoices,
             ]);

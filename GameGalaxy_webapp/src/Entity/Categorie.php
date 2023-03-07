@@ -45,6 +45,7 @@ class Categorie
         '+16ans' => '+16ans',
     ];
 
+
     public function __construct()
     {
         $this->id_categorie = new ArrayCollection();

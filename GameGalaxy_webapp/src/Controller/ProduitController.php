@@ -14,8 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategorieRepository;
 
 
-
-
 #[Route('/produit')]
 class ProduitController extends AbstractController
 {
