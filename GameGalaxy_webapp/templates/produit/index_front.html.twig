@@ -49,21 +49,20 @@
           <div class="col-lg-12">
             <div class="games-search-wrapper">
               <div class="left">
-                <form class="games-filter-from">
+   <form class="games-filter-from">
     <div class="row align-items-center">
         <div class="col-lg-2 mb-lg-0 mb-2"><span>SORT BY:</span></div>
         <div class="col-lg-5 col-md-6 mb-md-0 mb-3">
-            <select class="nice-select" name="categoryId" onchange="this.form.submit()">
-                <option value="" href="{{ path('app_front_produit_index') }}">All Categories</option>
+            <select class="nice-select" name="categorieId" onchange="this.form.submit()">
+                <option value="" {{ not selectedcategorieId  ? 'selected' : '' }}>All Categories</option>
                 {% for categorie in categories %}
-                    <option value="{{ categorie.id }}" {{ categorie.id == categorie.id ? 'selected' : '' }}>{{ categorie.nomCategorie }}</option>
+                    <option value="{{ categorie.id }}" {{ categorie.id == selectedcategorieId  ? 'selected' : '' }}>{{ categorie.nomCategorie }}</option>
                 {% endfor %}
             </select>
         </div>                   
     </div>
-{% set categorie = categories[0] %}
-<input type="hidden" name="categorie" value="{{ categorie.nomCategorie}}">
 </form>
+
               </div>
               <div class="right">
                 <form class="games-search-from">

@@ -49,13 +49,15 @@ class ProduitRepository extends ServiceEntityRepository
     }
     
     public function findByCategorie($categorieId)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.categorie = :categorieId')
-            ->setParameter('categorieId', $categorieId)
-            ->getQuery()
-            ->getResult();
-    }
+{
+    return $this->createQueryBuilder('p')
+        ->andWhere('p.id_categorie = :categorieId')
+        ->setParameter('categorieId', $categorieId)
+        ->getQuery()
+        ->getResult();
+}
+
+    
     
     public function search($searchTerm)
     {
