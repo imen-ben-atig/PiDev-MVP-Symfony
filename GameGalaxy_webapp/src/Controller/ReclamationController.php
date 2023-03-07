@@ -10,10 +10,31 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\SearchType;
+use Knp\Snappy\Pdf;
+use Dompdf\Dompdf;
 
 #[Route('/reclamation')]
 class ReclamationController extends AbstractController
 {
+   
+    #[Route('/pdf/{id}', name: 'export_reclamation_pdf', methods: ['GET'])]
+public function exportAction(Pdf $pdf, $id)
+{
+    $reclamation = $this->getDoctrine()->getRepository(Reclamation::class)->find($id);
+    $html = $this->renderView('reclamation/pdf.html.twig', [
+        'reclamation' => $reclamation,
+    ]);
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($html);
+    $dompdf->render();
+        
+    return new Response (
+        $dompdf->stream('resume', ["Attachment" => false]),
+        Response::HTTP_OK,
+        ['Content-Type' => 'application/pdf']
+    );
+}
+
     #[Route('/', name: 'app_front_reclamation_index', methods: ['GET'])]
     public function indexFront(ReclamationRepository $reclamationRepository): Response
     {

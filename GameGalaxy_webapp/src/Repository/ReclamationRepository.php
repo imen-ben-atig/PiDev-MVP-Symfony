@@ -95,4 +95,28 @@ class ReclamationRepository extends ServiceEntityRepository
         return $querybuilder;
         
 }
+public function orderByDest()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Destination', 'ASC')
+            ->getQuery()->getResult();
+    }
+    public function order_By_Nom()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Nom_Voyage', 'ASC')
+            ->getQuery()->getResult();
+    }
+    public function order_By_Date()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.date', 'ASC')
+            ->getQuery()->getResult();
+    }
+    public function order_By_Prix()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Prix_Voyage', 'ASC')
+            ->getQuery()->getResult();
+    }
 }

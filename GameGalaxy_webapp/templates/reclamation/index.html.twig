@@ -48,6 +48,8 @@
                     <a type="button" class="btn btn-warning" href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
                     <a type="button" class="btn btn-info" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
                      <a type="button" class="btn btn-danger" href="{{ path('app_repons_new') }}">Repondre</a>
+                     <a class="btn btn-success" href="{{ path('export_reclamation_pdf', {'id': reclamation.id}) }}">Exporter en PDF</a>
+
                 </td>
             </tr>
         {% else %}
