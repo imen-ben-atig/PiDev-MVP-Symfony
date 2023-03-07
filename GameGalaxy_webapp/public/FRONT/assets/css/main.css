@@ -5353,7 +5353,10 @@ span.is-active:after {
     border-color: #7216b6;
 }
 
-
+.fc-daygrid-day-number {
+    color: white;
+    
+  }
 
 /* footer section css end */
 

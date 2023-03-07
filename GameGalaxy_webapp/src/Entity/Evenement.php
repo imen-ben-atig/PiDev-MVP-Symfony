@@ -26,7 +26,7 @@ class Evenement
     
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank (message: "La description est requise!")]
-    #[Assert\Length (max:255)]
+    #[Assert\Length (max:65535)]
     private ?string $description = null;
 
     
@@ -124,7 +124,7 @@ class Evenement
 
     public function __toString()
     {
-        return $this->getNom() . ' (' . $this->getDate()->format('Y-m-d H:i:s') . ') '
+        return $this->getNom() . ' (' . $this->getDate()->format('Y M l H:i:s') . ') '
         ;
     }
 }

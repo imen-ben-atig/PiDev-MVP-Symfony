@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Repository\EvenementRepository;
+use App\Services\QrcodeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +26,18 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/front', name: 'app_front_reservation_index', methods: ['GET'])]
-    public function indexFront(ReservationRepository $reservationRepository,EvenementRepository $EvenementnRepository): Response
-    {
+    public function indexFront(ReservationRepository $reservationRepository,EvenementRepository $EvenementnRepository, QrcodeService $qrcodeService): Response
+    {   $qrcodes=[];
+        $count=0;
+        $reservations=$reservationRepository->findByid_membre(1);
+        foreach($reservations as $reservation)
+        {   $count++;
+            $qrcodes[$count]=$qrcodeService->qrcode($reservation->getIdMembre()." pour l'évènement suivant: ". $reservation->getIdEvenement());
+        }
+      
         return $this->render('reservation/index_front.html.twig', [
-            'reservations' => $reservationRepository->findByid_membre(1),
+            'reservations' => $reservations,
+            'qrcodes' => $qrcodes,
         ]);
     }
 

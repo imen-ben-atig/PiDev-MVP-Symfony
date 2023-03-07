@@ -29,36 +29,46 @@
 
 	<!-- METIER FULLCALENDAR js -->
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+	<style>
+
+		.fc .fc-daygrid-day-number {
+			padding: 4px;
+			position: relative;
+			z-index: 4;
+			color: white;
+		}
+		.fc .fc-col-header-cell-cushion {
+			display: inline-block;
+			padding: 2px 4px;
+			color: white;
+		}
+	</style>
 	<script>
 
 		document.addEventListener('DOMContentLoaded', function () {
-		var calendarEl = document.getElementById('calendar');
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			height: 650,
-				initialView: 'dayGridMonth',
-				events: [
-	{% for evenement in evenements %}
-				{
-						title: "{{ evenement.nom }}",
-						start: "{{ evenement.date|date('Y-m-d') }}",
-							startTime: "{{ evenement.date|format_datetime('short', 'short', locale='en')  }}",
-						eventColor: '#be2596',
-				
-				
-				}
-	,{% endfor %}
-						],
-				
-				locale: 'fr',
-				timeZone: 'Europe/paris',
-				headerToolbar: {
-					start: 'prev,next today',
-					center: 'title',
-					end: 'dayGridMonth,timeGridWeek'
-				}
-				});
-		calendar.render();
-		});
+var calendarEl = document.getElementById('calendar');
+var calendar = new FullCalendar.Calendar(calendarEl, {
+height: 650,
+initialView: 'dayGridMonth',
+events: [{% for evenement in evenements %}{
+title: "{{ evenement.nom }}",
+start: "{{ evenement.date|date('Y-m-d') }}",
+startTime: "{{ evenement.date|format_datetime('short', 'short', locale='en') }}",
+eventColor: '#be2596'
+
+
+},{% endfor %}],
+
+locale: 'fr',
+timeZone: 'Europe/paris',
+headerToolbar: {
+start: 'prev,next today',
+center: 'title',
+end: 'dayGridMonth,timeGridWeek'
+}
+});
+calendar.render();
+});
 	</script>
 
 {% endblock %}
@@ -69,15 +79,10 @@
 	<section class="inner-hero bg_img" data-background="../FRONT/assets/images/bg/inner-hero.jpg">
 		<div class="shape position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/shape.png" alt="image"></div>
 
-		<div class="el-1 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-1.png" alt="image"></div>
-		<div class="el-2 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-2.png" alt="image"></div>
-		<div class="el-3 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-3.png" alt="image"></div>
-		<div class="el-4 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-4.png" alt="image"></div>
-		<div class="el-5 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-5.png" alt="image"></div>
-		<div class="el-6 position-absolute"><img src="../FRONT/assets/images/elements/inner-hero/el-6.png" alt="image"></div>
+		<div class="el-1 position-absolute"><img src="../FRONT/assets/images/logo.png" alt="image"></div>
 
 		<div class="container">
-		
+
 			<div class="row">
 				<div class="col-lg-12">
 					<h2 class="page-title">Evenements</h2>
@@ -86,15 +91,19 @@
 							<a href="index.html">Acceuil</a>
 						</li>
 						<li>Evenements</li>
-						
+
 					</ul>
 				</div>
-				
-			</div>
 
+			</div>
+			<div class="section-header text-center has--bg">
+				<div class="header-image"><img src={{ asset(image_dir ~ 'elements/header-el.png') }} alt="image"></div>
+				<h2 class="section-title">Planning</h2>
+				<p>Guettez les évènements à venir</p>
+			</div>
 			<div id='calendar'></div>
 		</div>
-		
+
 	</section>
 	<!-- inner-hero end -->
 
@@ -103,6 +112,11 @@
 		<div class="container">
 			<div class="row mb-none-40">
 				<div class="col-lg-12">
+					<div class="section-header text-center has--bg">
+						<div class="header-image"><img src={{ asset(image_dir ~ 'elements/header-el.png') }} alt="image"></div>
+						<h2 class="section-title">Tous les évènements</h2>
+						<p>Liste de tous les évènements à venir</p>
+					</div>
 					{% for evenement in evenements %}
 						<div class="post-card style--three mb-40">
 							<div class="post-card__thumb">
@@ -112,8 +126,8 @@
 								<h3 class="post-card__title mb-3">
 									<a href="front/{{ evenement.id }}">{{ evenement.nom }}</a>
 								</h3>
-								<p>{{ evenement.description }}</p>
-								<span class="time">{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</span>
+								<p>{{ evenement.type }}</p>
+								<span class="time">{{ evenement.date ? evenement.date|date('l M Y H:i:s') : '' }}</span>
 							</div>
 						</div>
 						<!-- post-card end -->

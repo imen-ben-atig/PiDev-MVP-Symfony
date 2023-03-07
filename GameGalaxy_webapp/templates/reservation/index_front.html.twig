@@ -7,7 +7,7 @@
 {% block body %}
 	<!-- inner-hero start -->
 	<section class="inner-hero bg_img" data-background="../FRONT/assets/images/bg/inner-hero.jpg">
-		
+
 
 		<div class="container">
 			<div class="row">
@@ -30,34 +30,45 @@
 			<div class="faq-wrapper">
 				<div class="section-header text-center">
 					<span class="section-sub-title">Vous avez réservé pour un évènement?</span>
-					<h2 class="section-title">Voici vos réservations.</h2>
+					<h2 class="section-title">Voici toutes vos réservations.</h2>
+					<p>Vous y trouverez aussi vos QR-Codes exclusifs pour vos réservations.</p>
 				</div>
 				<!-- section header -->
 				<div class="accordion cmn-accordion" id="faqAcc-one">
+
+					
+
+
+					{% set count = 0 %}
 					{% for reservation in reservations %}
+					{% set count = count + 1 %}
 						<div class="card">
 							<div class="card-header" id="h-5">
-								<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+								<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{count}}" aria-expanded="false" aria-controls="collapse{{count}}">
 
 									{{ reservation.getIdEvenement() }}
 								</button>
 							</div>
-							<div id="collapse5" class="collapse" aria-labelledby="h-5" data-parent="#faqAcc-one">
+							<div id="collapse{{count}}" class="collapse" aria-labelledby="h-{{count}}" data-parent="#faqAcc-one">
 								<div class="card-body">
 									<p>REF:
 										{{ reservation.id }}</p>
-									<p>LE:
+									<p>Réservation faite le:
 										{{ reservation.date ? reservation.date|date('Y-m-d H:i:s') : '' }}
-										</p>
-			                            <img src="{{qr_code_url(app.request.uri)}}/{{reservation.id}}"alt="photo" width="90" height="90"/>
-
+									</p>
+									<span class="section-sub-title">Faites scanner ce QR-Code à l'entrée!</span>
+									<div class="row">
+									<img src="{{qrcodes[count]}}" alt="qr-code"/>
+									</div>
 								</div>
 							</div>
 						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
+					<div class="row justify-content-center mt-50">
+				<div class="col-lg-10">
+					
 				</div>
 			</div>
-		</div>
-	</div>
 
-{% endblock %}
+				{% endblock %}
