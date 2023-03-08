@@ -28,6 +28,11 @@ class Order
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Item::class, cascade: ["persist"])]
     private Collection $items;
 
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Reclamation::class, cascade: ["persist"])]
+    private Collection $reclamations;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Payment $Payment = null;
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -37,6 +42,13 @@ class Order
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getStatus(): ?string
@@ -115,5 +127,51 @@ class Order
         }
 
         return $this;
+    }
+    
+    /**
+     * @return Collection<int, Reclamation>
+     */
+    public function getReclamations(): Collection
+    {
+        return $this->reclamations;
+    }
+
+    public function addReclamation(Reclamation $item): self
+    {
+        if (!$this->reclamations->contains($item)) {
+            $this->reclamations->add($item);
+            $item->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReclamation(Reclamation $item): self
+    {
+        if ($this->reclamations->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getCommande() === $this) {
+                $item->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function getPayment(): ?Payment
+    {
+        return $this->Payment;
+    }
+
+    public function setPayment(Payment $payment): self
+    {
+        $this->Payment = $payment;
+
+        return $this;
+    }
+    public function __toString(): string {
+        return $this->id;
     }
 }

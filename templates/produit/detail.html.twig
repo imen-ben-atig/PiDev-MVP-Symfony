@@ -1,0 +1,68 @@
+{% extends 'FRONT/base.html.twig' %}
+{% block body %}
+         
+    <!-- inner-hero start -->
+    <section class="inner-hero style--three">
+      <div class="clip-path-img"><img src="{{asset('uploads/produits/'~ produit.img)}}" alt="photo" alt="image"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="single-game-hero text-center">
+              <h2 class="game-name">{{ produit.nomProduit }}</h2>
+              <img src="{{asset('uploads/produits/'~ produit.img)}}"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- inner-hero end -->
+
+   
+
+    <!-- single game start -->
+    <section class="pt-120 position-relative">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-header text-center has--bg">
+              <h2 class="section-title">Welcome To {{ produit.nomProduit }}</h2>
+              <p>{{ produit.description }}.</p>
+              <a href="#" class="cmn-btn style--two mt-5">PLAY NOW ON YOUR DEVICE</a>
+              <br><br>
+              <h3 class="section-title">Only For {{ produit.prix }}Dt </h3>
+              <button type="button" class="btn btn-outline-warning">Ajouter panier</button>
+            </div>
+          </div>
+        </div>
+        <!-- single-game-slider end -->
+      </div>
+    </section>
+    <!-- single game end -->
+
+
+
+    <!-- trailer section start -->
+    <section class="pt-120 pb-120 position-relative">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="section-header text-center has--bg">
+              <h2 class="section-title">Game Trailers</h2>
+            </div>
+          </div>
+        </div><!-- row end -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="trailer">
+              <div class="trailer__thumb">
+                <a href="https://www.youtube.com/embed/ssrNcwxALS4" data-rel="lightcase:myCollection" class="play-icon"><i class="fas fa-play"></i></a>
+              </div>
+            </div><!-- trailer end -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- trailer section end -->
+
+   
+    	{% endblock %}

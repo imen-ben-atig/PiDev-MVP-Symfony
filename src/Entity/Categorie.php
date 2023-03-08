@@ -6,9 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -19,20 +17,34 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[assert\NotBlank(message:"Nom Obligatoire")]
-
+    #[Assert\NotBlank(message:"Nom Obligatoire")]
+    /**
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un titre au mini de 5 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
     private ?string $nom_categorie = null;
 
     #[ORM\Column]
-    #[assert\NotBlank(message:"etat Obligatoire")]
+    #[Assert\NotBlank(message:"etat Obligatoire")]
     private ?int $etat = null;
 
-    #[ORM\Column]
-    #[assert\NotBlank(message:"type Obligatoire")]
-    private ?int $type = null;
+    #[ORM\Column(type:"string")]
+    #[Assert\NotBlank(message:"type Obligatoire")]
+    private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'id_categorie', targetEntity: Produit::class)]
     private Collection $id_categorie;
+
+    private static $typeChoices = [
+        '+5ans' => '+5ans',
+        '+12ans' => '+12ans',
+        '+16ans' => '+16ans',
+    ];
+
 
     public function __construct()
     {
@@ -68,12 +80,12 @@ class Categorie
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -109,8 +121,10 @@ class Categorie
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->getNomCategorie();
     }
+    
 }

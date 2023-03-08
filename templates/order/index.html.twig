@@ -9,7 +9,12 @@
     </section>
 
         <h1>Order index</h1>
-
+        {% if paymentSuccess %}
+        <h2>Payment Success</h2>
+        {% endif %}
+        {% if paymentFail %}
+        <h2>Payment Failure</h2>
+        {% endif %}
     <table class="table">
         <thead>
             <tr>
@@ -28,6 +33,8 @@
                 <td style="color: #8984dc">
                     <a style="color: #8984dc" href="{{ path('app_order_show', {'id': order.id}) }}">visualiser</a>
                     <a style="color: #8984dc" href="{{ path('app_order_edit', {'id': order.id}) }}">modifier</a>
+                    <a style="color: #8984dc" href="{{ path('app_reclamation_new', {'orderId': order.id}) }}">reclamer</a>
+
                 </td>
             </tr>
         {% else %}

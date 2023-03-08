@@ -75,4 +75,13 @@ class CategorieController extends AbstractController
 
         return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/categorie/tri-par-nom', name: 'app_categorie_tri_par_nom', methods: ['GET'])]
+    public function triParNom( CategorieRepository $categorieRepository): Response
+    {
+        $categories = $categorieRepository->findBy([], ['nom_categorie' => 'ASC']);
+        return $this->render('categorie/index.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+        
 }

@@ -44,10 +44,49 @@
         </tbody>
     </table>
 
+    <table class="table">
+        <thead>
+        <th style="color: #8984dc">ID</th>
+        <th style="color: #8984dc">Session</th>
+        <th style="color: #8984dc">Total</th>
+        <th style="color: #8984dc">Status</th>
+        </thead>
+        <tbody>
+        {% if order.Payment %}
+            <tr>
+                <td style="color: #8984dc">{{ order.Payment.id }}</td>
+                <td style="color: #8984dc">{{ order.Payment.sessionId }}</td>
+                <td style="color: #8984dc">{{ order.Payment.total }}</td>
+                <td style="color: #8984dc">{{ order.Payment.status }}</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <h2>Reclamations</h2>
+    <table class="table">
+        <thead>
+        <th style="color: #8984dc">Titre</th>
+        <th style="color: #8984dc">Type</th>
+        <th style="color: #8984dc">Date</th>
+        </thead>
+        <tbody>
+        {% for item in order.reclamations  %}
+        <tr>
+            <td style="color: #8984dc"><a href="{{ path('app_reclamation_show', {'id' : item.id }) }}">{{ item.titreRec }}</a></td>
+            <td style="color: #8984dc">{{ item.typeRec }}</td>
+            <td style="color: #8984dc">{{ item.dateRec ? item.dateRec|date('Y-m-d') : '' }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 
     <a style="color: #8984dc" href="{{ path('app_order_index') }}">retour a la liste</a>
 
     <a style="color: #8984dc" href="{{ path('app_order_edit', {'id': order.id}) }}">modifer</a>
-
+    {% if order.status == "Pending" %}
+    <a style="color: #8984dc" href="{{ path('pay_order', {'Num': order.id,'amount' : order.total}) }}">payer</a>
+    {% endif %}
     {{ include('order/_delete_form.html.twig') }}
 {% endblock %}

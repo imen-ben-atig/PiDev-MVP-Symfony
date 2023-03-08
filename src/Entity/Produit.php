@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
-use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -20,28 +20,61 @@ class Produit
 
     #[ORM\Column(length: 255)]
     #[assert\NotBlank(message:"Nom Obligatoire")]
+    /**
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un titre au mini de 5 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
     private ?string $nom_produit = null;
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Prix Obligatoire")]
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Entrer des valeurs numériques uniquement."
+     * )
+     */
     private ?float $prix = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[assert\NotBlank(message:"Description Obligatoire")]
-    
+    /**
+     * @Assert\Length(
+     *      min = 20,
+     *      minMessage=" Entrer un titre au mini de 20 caracteres"
+     *
+     *     )
+     * @ORM\Column(type="string", length=255)
+     */
     private ?string $description = null;
 
     #[ORM\Column]
     #[assert\NotBlank(message:"Stock Obligatoire")]
+    /**
+     * @Assert\Regex(
+     *      pattern="/^[0-9]+$/",
+     *      message="Entrez seulement des chiffres"
+     * )
+     * @ORM\Column(type="string", length=255)
+     */
     private ?int $stock = null;
 
-    #[ORM\Column(length: 255)]
-    #[assert\NotBlank(message:"Image Obligatoire")]
-    private ?string $img = null;
+     #[ORM\Column(length: 255)]
+     private ?string $img = null;
 
-    #[ORM\ManyToOne(inversedBy: 'id_categorie')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $id_categorie = null;
+     #[ORM\ManyToOne(targetEntity: Categorie::class)]
+     #[ORM\JoinColumn(nullable: false)]
+     private ?Categorie $id_categorie = null;
+
+    #[ORM\Column]
+    #[assert\NotBlank(message:"Stock Obligatoire")]
+    private ?float $rating = null;
+
 
     #[ORM\ManyToMany(targetEntity: Cart::class, mappedBy: 'id_pproduct',cascade: ["persist"])]
     private Collection $carts;
@@ -52,20 +85,12 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'Product', targetEntity: Item::class, cascade: ["persist"])]
     private Collection $items;
 
-    public function __construct()
-    {
-        $this->carts = new ArrayCollection();
-        $this->orders = new ArrayCollection();
-        $this->items = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-    public function setId(int $id) {
-        $this->id = $id;
-    }
+
     public function getNomProduit(): ?string
     {
         return $this->nom_produit;
@@ -114,30 +139,43 @@ class Produit
         return $this;
     }
 
-    public function getImg(): ?string
+      public function getImg(): ?string
+      {
+          return $this->img;
+      }
+
+      public function setImg(string $img): self
+      {
+          $this->img = $img;
+
+          return $this;
+      }
+
+      public function getIdCategorie(): ?Categorie
+        {
+      return $this->id_categorie;
+         }
+
+      public function setIdCategorie(?Categorie $id_categorie): self
+      {
+      $this->id_categorie = $id_categorie;
+
+      return $this;
+      }
+
+    public function getRating(): ?float
     {
-        return $this->img;
+        return $this->rating;
     }
 
-    public function setImg(string $img): self
+    public function setRating(float $rating): self
     {
-        $this->img = $img;
+        $this->rating = $rating;
 
         return $this;
     }
 
-    public function getIdCategorie(): ?Categorie
-    {
-        return $this->id_categorie;
-    }
-
-    public function setIdCategorie(?Categorie $id_categorie): self
-    {
-        $this->id_categorie = $id_categorie;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Cart>
      */
@@ -177,54 +215,8 @@ class Produit
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);
-            $order->addProduct($this);
         }
-
+    
         return $this;
     }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->removeElement($order)) {
-            $order->removeProduct($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Item>
-     */
-    public function getItems(): Collection
-    {
-        return $this->items;
-    }
-
-    public function addItem(Item $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items->add($item);
-            $item->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Item $item): self
-    {
-        if ($this->items->removeElement($item)) {
-            // set the owning side to null (unless already changed)
-            if ($item->getProduct() === $this) {
-                $item->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-    public function __toString(): string
-    {
-        return $this->nom_produit;
-    }
-
-
 }

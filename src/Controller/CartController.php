@@ -114,7 +114,10 @@ class CartController extends AbstractController
 
 
         $session->set("panier", $panier);
-        $cart = $cartRepo->findOneBy(['session' => $session->getId() ]);
+        $cart = $cartRepo->findOneBy(['session' => $session->getId() ]) ;
+        if(!$cart) {
+            $cart = new Cart();
+        }
         $cart->setSession($session->getId());
         $quantity = 0;
         $total = 0;
