@@ -120,7 +120,7 @@ calendar.render();
 					{% for evenement in evenements %}
 						<div class="post-card style--three mb-40">
 							<div class="post-card__thumb">
-								<img src="..\FRONT\assets\images\blog\bb1.jpg" alt="image">
+								<img src={{ asset("/uploads/evenements/" ~ evenement.image) }} alt="image">
 							</div>
 							<div class="post-card__content">
 								<h3 class="post-card__title mb-3">
@@ -151,7 +151,7 @@ calendar.render();
 									</li>
 
 									<li class="page-item">
-										<a class="page-link next" href="#">Next
+										<a class="page-link next" href="#" aria-disabled="true">Next
 											<i class="las la-angle-double-right"></i>
 										</a>
 									</li>

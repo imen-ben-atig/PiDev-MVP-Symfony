@@ -20,7 +20,12 @@
 										<div class="card-body">
 											{{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
 											<div class="row mb-3">
-												
+												<div class="col-md-6">
+													<div class="form-floating mb-3 mb-md-0">
+														{{form_widget(form.nom,{'attr':{'class':'form-control'}})}}
+														<label for="inputFirstsName">Nom</label>
+													</div>
+												</div>
 												<div class="col-md-6">
 													<div class="form-floating">
 														{{form_widget(form.date,{'attr':{'class':'form-control datetimepicker'}})}}
@@ -52,6 +57,12 @@
 													<div class="form-floating mb-3 mb-md-0">
 														{{form_widget(form.type,{'attr':{'class':'form-control'}})}}
 														<label for="inputFirstName">Type</label>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-floating mb-3 mb-md-0">
+														{{form_widget(form.image,{'attr':{'class':'form-control'}})}}
+														<label for="inputFirstsssName">Image</label>
 													</div>
 												</div>
 											</div>

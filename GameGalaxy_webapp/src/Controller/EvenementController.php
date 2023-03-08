@@ -17,6 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\RememberMe\PersistentToken;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/evenement')]
 class EvenementController extends AbstractController
@@ -39,13 +41,43 @@ class EvenementController extends AbstractController
     }
 
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EvenementRepository $evenementRepository): Response
+    public function new(Request $request, EvenementRepository $evenementRepository, SluggerInterface $slugger): Response
     {
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $File = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($File) {
+                $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$File->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $File->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $evenement->setImage($newFilename);
+            }
+
+
+
             $evenementRepository->save($evenement, true);
 
             return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
@@ -89,7 +121,7 @@ class EvenementController extends AbstractController
             $evenement->setCapacite($evenement->getCapacite() - 1);
             $this->getDoctrine()->getManager()->flush();
     
-            return $this->redirectToRoute('app_front_evenement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_front_evenement_show', ['id' => $evenement->getId()], Response::HTTP_SEE_OTHER);
         }
     
         // Check if the current user has already reserved this event
@@ -110,12 +142,38 @@ class EvenementController extends AbstractController
     
 
     #[Route('/{id}/edit', name: 'app_evenement_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Evenement $evenement, EvenementRepository $evenementRepository): Response
+    public function edit(Request $request, Evenement $evenement, EvenementRepository $evenementRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $File = $form->get('image')->getData();
+
+            
+            if ($File) {
+                $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$File->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $File->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $evenement->setImage($newFilename);
+            }
+
             $evenementRepository->save($evenement, true);
 
             return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);

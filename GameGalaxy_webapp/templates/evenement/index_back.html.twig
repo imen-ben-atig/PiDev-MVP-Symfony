@@ -31,6 +31,7 @@
 									<th>Duree</th>
 									<th>Capacite</th>
 									<th>Type</th>
+									<th>Image</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
@@ -43,6 +44,8 @@
 									<th>Duree</th>
 									<th>Capacite</th>
 									<th>Type</th>
+									<th>Image</th>
+									<th>Actions</th>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -55,6 +58,30 @@
 										<td>{{ evenement.duree }}</td>
 										<td>{{ evenement.capacite }}</td>
 										<td>{{ evenement.type }}</td>
+										{% if evenement.image %}
+											<td>
+											<style>
+												.cover {
+
+													object-fit: cover;
+
+													width: 100px;
+
+													margin: 0px;
+
+													height: 100px;
+
+												}
+											</style>
+												
+												<img src={{ asset("/uploads/evenements/" ~ evenement.image) }} class="cover" >
+												</td>
+											
+										{% else %}
+											<td>
+												NULL
+											</td>
+										{% endif %}
 										<td>
 											<div class="mt-4 mb-0">
 												<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
@@ -68,6 +95,9 @@
 									</tr>
 								{% else %}
 									<tr>
+										<td>
+											N/A
+										</td>
 										<td>
 											N/A
 										</td>

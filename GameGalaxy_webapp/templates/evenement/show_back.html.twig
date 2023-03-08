@@ -38,6 +38,38 @@
 							<th>Type</th>
 							<td>{{ evenement.type }}</td>
 						</tr>
+						<tr>
+							<th>Image</th>
+							<td>
+							
+							{% if evenement.image %}
+											<td>
+											<style>
+												.cover {
+
+													object-fit: cover;
+
+													width: 100px;
+
+													margin: 0px;
+
+													height: 100px;
+
+												}
+											</style>
+												
+												<img src={{ asset("/uploads/evenements/" ~ evenement.image) }} class="cover" >
+												</td>
+											
+										{% else %}
+											<td>
+												NULL
+											</td>
+										{% endif %}
+							
+							</td>
+						</tr>
+						
 					</tbody>
 				</table>
 

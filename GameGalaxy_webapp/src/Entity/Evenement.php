@@ -44,6 +44,9 @@ class Evenement
     #[Assert\Length (max:255)]
     private ?string $type = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,5 +129,17 @@ class Evenement
     {
         return $this->getNom() . ' (' . $this->getDate()->format('Y M l H:i:s') . ') '
         ;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->Image;
+    }
+
+    public function setImage(?string $Image): self
+    {
+        $this->Image = $Image;
+
+        return $this;
     }
 }
