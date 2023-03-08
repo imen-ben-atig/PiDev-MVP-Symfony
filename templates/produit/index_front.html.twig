@@ -95,7 +95,7 @@
                 </div>
                 <div class="game-card__action">
                   <p class="mb-2">Download now at</p>              
-                  <button type="button" <a href="{{ path('app_produit_detail', {'id': produit.id}) }}" class="btn btn-outline-warning">Ajouter Panier</button>
+                  <a href="{{ path('cart_add', {'id': produit.id}) }}" ><button type="button" class="btn btn-outline-warning">Ajouter Panier</button> </a>
 
                   <img src="{{qr_code_url(app.request.uri)}}/{{produit.id}}/detail"alt="photo" width="90" height="90"/>
                 </div>

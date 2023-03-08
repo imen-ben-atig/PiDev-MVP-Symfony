@@ -54,4 +54,4 @@ class AppExtension extends AbstractExtension
     
         return $html;
     }
-    }
+}
