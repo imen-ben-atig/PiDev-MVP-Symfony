@@ -1,0 +1,139 @@
+{% extends 'FRONT/base.html.twig' %}
+
+{% block title %}
+	Acceuil
+{% endblock %}
+
+{% block body %}
+
+<!-- HEAD SECTION -->
+
+<section class="hero bg_img" data-background={{ asset(image_dir ~ 'elements/bg/heropng') }} style="background-image: url(&quot;{{ asset(image_dir ~ 'elements/bg/heropng') }}&quot;);">
+      <div class="hero__shape">
+        <img src={{ asset(image_dir ~ 'elements/hero/shape-2.png') }} alt="image">
+      </div>
+      <div class="el-1" style="transform: matrix(1, 0, 0, 1, -22.2324, -0.735669);"><img src={{ asset(image_dir ~ 'elements/hero/el-1.png') }} alt="image"></div>
+      <div class="el-2" style="transform: matrix(1, 0, 0, 1, -12.3513, -0.408705);"><img src={{ asset(image_dir ~ 'elements/hero/el-2.png') }} alt="image"></div>
+      <div class="el-3" style="transform: matrix(1, 0, 0, 1, -24.7027, -0.81741);"><img src={{ asset(image_dir ~ 'elements/hero/el-3.png') }} alt="image"></div>
+      <div class="el-4" style="transform: matrix(1, 0, 0, 1, -17.2919, -0.572187);"><img src={{ asset(image_dir ~ 'elements/hero/el-4.png') }} alt="image"></div>
+      <div class="el-5" style="transform: matrix(1, 0, 0, 1, -29.6432, -0.980892);"><img src={{ asset(image_dir ~ 'elements/hero/el-5.png') }} alt="image"></div>
+      <div class="el-6" style="transform: matrix(1, 0, 0, 1, -19.7621, -0.653928);"><img src={{ asset(image_dir ~ 'elements/hero/el-6.png') }} alt="image"></div>
+      <div class="el-7" style="transform: matrix(1, 0, 0, 1, -22.2324, -0.735669);"><img src={{ asset(image_dir ~ 'elements/hero/el-7.png') }} alt="image"></div>
+      <div class="el-8" style="transform: matrix(1, 0, 0, 1, -17.2919, -0.572187);"><img src={{ asset(image_dir ~ 'elements/hero/el-8.png') }} alt="image"></div>
+      <div class="el-9" style="transform: matrix(1, 0, 0, 1, -24.7027, -0.81741);"><img src={{ asset(image_dir ~ 'elements/hero/el-9.png') }} alt="image"></div>
+      <div class="el-10" style="transform: matrix(1, 0, 0, 1, -17.2919, -0.572187);"><img src={{ asset(image_dir ~ 'elements/hero/el-10.png') }} alt="image"></div>
+      <div class="el-11" style="transform: matrix(1, 0, 0, 1, -19.7621, -0.653928);"><img src={{ asset(image_dir ~ 'elements/hero/el-11.png') }} alt="image"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="hero__content">
+              <span class="hero__sub-title wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0.3s; animation-name: fadeInUp;">Welcome to GameGalaxy </span>
+              <h2 class="hero__title wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.5s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0.5s; animation-name: fadeInUp;">Elevez votre Gaming au niveau Supérieur.</h2>
+              <p class="wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.7s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0.7s; animation-name: fadeInUp;">Le futur de l'E-Sports Tunisien est entre vos mains!</p>
+              <a href="games.html" class="cmn-btn wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.9s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0.9s; animation-name: fadeInUp;">Rejoignez-nous</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- HEAD SECTION END -->
+
+<!-- HASSENE EVENEMENTS -->
+
+<section class="pt-120 pb-90">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-header has--bg style--two">
+              <div class="header-image style--two"><img src={{ asset(image_dir ~ 'elements/header-el-4.png') }} alt="image"></div>
+              <span class="section-sub-title">Evenements recents</span>
+              <h2 class="section-title">Evenements</h2>
+            </div>
+            <a href="/evenement/front" class="cmn-btn">Voir tous les évènements</a>
+          </div>
+          <div class="col-lg-8 mt-lg-0 mt-5">
+            <div class="blog-slider">
+            {% for i in 0..2 %}
+              <div class="post-card">
+                <div class="post-card__thumb">
+                  <img src={{ asset("/uploads/evenements/" ~ evenements[i].image) }} alt="image">
+                </div>
+                <div class="post-card__content">
+                  <span class="date">{{evenements[i].date ? evenements[i].date|date('l M Y H:i:s') : '' }}</span>
+                  <h3 class="post-title"><a href="/evenement/front/{{evenements[i].id}}">{{evenements[i].nom}}</a></h3>
+                  
+                </div>
+              </div><!-- post-card end -->
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- HASSENE EVENEMENTS END -->
+
+<!-- FOOT SECTION -->
+
+<footer class="footer-section bg_img" data-background="assets/images/elements/footer.png" style="background-image: url(&quot;assets/images/elements/footer.png&quot;);">
+    <div class="container">
+      
+      <div class="row footer-top mb-none-50">
+        <div class="col-lg-3 col-sm-6 mb-50">
+          <div class="footer-widget">
+            <h3 class="footer-widget__title">A propos</h3>
+            <ul class="short-links">
+              
+              <li><a href="#0">Réclamation</a></li>
+              <li><a href="#0">Customer Reviews</a></li>
+              <li><a href="#0">Privacy Policy</a></li>
+            </ul>
+          </div><!-- footer-widget end -->
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-50">
+          <div class="footer-widget">
+            <h3 class="footer-widget__title">Mon compte</h3>
+            <ul class="short-links">
+              <li><a href="#0">Gérer votre compte</a></li>
+              <li><a href="#0">Vérification compte</a></li>
+              <li><a href="#0">Sécurité &amp; Sécurité</a></li>
+            </ul>
+          </div><!-- footer-widget end -->
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-50">
+          <div class="footer-widget">
+            <h3 class="footer-widget__title">Centre d'aide</h3>
+            <ul class="short-links">
+              <li><a href="#0">Vos réclamations</a></li>
+              <li><a href="#0">FAQ</a></li>
+              <li><a href="#0">Quick Start Guide</a></li>
+              <li><a href="#0">Tutorials</a></li>
+            </ul>
+          </div><!-- footer-widget end -->
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-50">
+          <div class="footer-widget">
+            <h3 class="footer-widget__title">LEGAL INFO</h3>
+            <ul class="short-links">
+              <li><a href="#0">Security</a></li>
+              <li><a href="#0">Terms of Service</a></li>
+              <li><a href="#0">Become Affiliate</a></li>
+              <li><a href="#0">Complaints Policy</a></li>
+            </ul>
+          </div><!-- footer-widget end -->
+        </div>
+      </div><!-- footer-top end -->
+      <div class="row footer-bottom align-items-center">
+        <div class="col-lg-7 col-md-6 text-md-left text-center">
+          <p class="copy-right-text">Copyright © 2023.All Rights Reserved By <a href="#0">GameGalaxy</a></p>
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
+<!-- FOOT SECTION END -->
+
+{% endblock %}
+
