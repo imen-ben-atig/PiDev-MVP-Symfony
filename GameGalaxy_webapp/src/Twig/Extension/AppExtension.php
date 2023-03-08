@@ -33,24 +33,25 @@ class AppExtension extends AbstractExtension
 
     public function generateStars($rating, $maxStars = 5)
     {
+        $maxStars = min($maxStars, 5); // Ensure $maxStars is not greater than 5
         $fullStars = floor($rating);
         $emptyStars = $maxStars - $fullStars;
-        $halfStar = ceil($rating - $fullStars);
-        
+        $halfStar = round(($rating - $fullStars) * 2);
+    
         $html = '';
         // full stars
         for ($i = 0; $i < $fullStars; $i++) {
             $html .= '<i class="fas fa-star"></i>';
         }
         // half star
-        if ($halfStar) {
+        if ($halfStar > 0) {
             $html .= '<i class="fas fa-star-half-alt"></i>';
         }
         // empty stars
         for ($i = 0; $i < $emptyStars; $i++) {
             $html .= '<i class="far fa-star"></i>';
         }
-        
+    
         return $html;
     }
-}
+    }

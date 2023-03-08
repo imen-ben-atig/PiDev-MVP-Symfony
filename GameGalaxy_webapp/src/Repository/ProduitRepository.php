@@ -93,6 +93,17 @@ class ProduitRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    public function findByExampleField($value): array
+        {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+                ->orderBy('p.id', 'ASC')
+                ->setMaxResults(2)
+                ->getQuery()
+                ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
