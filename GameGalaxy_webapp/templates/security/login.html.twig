@@ -1,0 +1,108 @@
+{% extends 'FRONT/base.html.twig' %}
+{% block title %}CONNEXION
+			{% endblock %}
+{% block body %}
+<body>
+
+  <!-- prealoader start  -->
+  <div class="preloader">
+    <div class="spinner">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+  <!-- prealoader end -->
+
+  <!-- scroll-to-top start -->
+  <div class="scroll-to-top">
+    <span class="scroll-icon">
+      <i class="las la-arrow-up"></i>
+    </span>
+  </div>
+  <!-- scroll-to-top end -->
+  <!-- page-wrapper start -->
+  <div class="page-wrapper">
+    <!-- login modal -->
+    <div class="modal fade" id="loginModal" tabindex="1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-transparent">
+          <div class="modal-body">
+            <div class="account-area">
+              <h3 class="title mb-4">Welcome to GameGalaxy</h3>
+              <form class="account-form">
+                <div class="form-group">
+                  <label>Your Email </label>
+                  <input type="email" name="login_email" placeholder="Enter Your Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Password </label>
+                  <input type="password" name="login_email" placeholder="Enter Your Password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <p>Forgot your password? <a href="#0">recover password</a></p>
+                </div>
+                <div class="text-center">
+                  <a  href="{{ path('app_login') }}" type="submit" class="cmn-btn">Sign IN</a>
+                </div>
+              </form>
+              <div class="or-devider mt-5"><span>OR</span></div>
+              <div class="text-center mt-4">
+                <p>Sign up with your work email</p>
+                <a href="#0" class="google-btn mt-4 mb-3"><img src="FRONT\assets\images\icon\google.png" alt="image">Sign Up
+                  with Google</a>
+                <p>Don't have an account? <a href="{{ path('app_register') }}" data-dismiss="modal" data-toggle="modal"
+                    data-target="#signupModal">Sign up here</a></p>
+              </div>
+            </div><!-- account-area end -->
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+ <section class="pt-120 pb-120 position-relative overflow-hidden">
+      <div class="contact-left-el"><img src="..\FRONT\assets\images\elements\contact-left-el.png" alt="image"></div>
+      <div class="contact-right-el"><img src="..\FRONT\assets\images\elements\contact-right-el.png" alt="image"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="section-header text-center has--bg">
+              <div class="header-image"><img src="..\FRONT\assets\images\elements\header-el.png" alt="image"></div>
+              <h2 class="section-title">Connexion</h2>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="contact-form-wrapper">
+              <form class="contact-form" id="contact_form_submit">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Votre email ici" class="form-control style--two" autocomplete="email" required autofocus>
+                </div>
+                <div class="form-group">
+                  <label>Mot de passe</label>
+                  <input type="password" name="password" id="inputPassword" placeholder="Votre mot de passe ici" class="form-control style--two" autocomplete="current-password" required>
+                </div>
+                
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing" name="_remember_me">Se rappeler de moi</label>
+                  </div>
+                </div>
+                <div>
+                  <button type="submit" class="submit-btn">Connexion</button>
+                  <p class="sign-up">Pas de compte? <a href="{{ path('app_register') }} "> S'inscrire</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <!-- contact section end -->
+
+{% endblock %}
