@@ -42,12 +42,12 @@ class ReclamationRepository extends ServiceEntityRepository
 
     public  function sms(){
         // Your Account SID and Auth Token from twilio.com/console
-                $sid = 'AC2393d69b2dac360fbdec1f12151466bc';
-                $auth_token = 'bbec2ce72bec2058d3904873045be360';
+                $sid = 'AC7a5eb816b1165309f12c5589afc6b543';
+                $auth_token = '63d6e9eafa8d8b7e52c8fc4dcd45c4bc';
         // In production, these should be environment variables. E.g.:
         // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
         // A Twilio number you own with SMS capabilities
-                $twilio_number = "+12762862473";
+                $twilio_number = "+15676007363";
         
                 $client = new Client($sid, $auth_token);
                 $client->messages->create(
@@ -55,7 +55,7 @@ class ReclamationRepository extends ServiceEntityRepository
                     '+21654804772',
                     [
                         // A Twilio phone number you purchased at twilio.com/console
-                        'from' => '+12762862473',
+                        'from' => '+15676007363',
                         // the body of the text message you'd like to send
                         'body' => 'Une nouvelle reclamation a été ajouter merci de consulter la liste des reclamations pour plus de detail!'
                     ]
