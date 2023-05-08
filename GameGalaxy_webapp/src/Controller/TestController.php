@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
-    #[Route('/testfront', name: 'app_testfront')]
+    #[Route('/home', name: 'app_testfront')]
     public function indexFRONT(): Response
     {
-        return $this->render('FRONT/index.html.twig', [
+        return $this->render('home_page/index.html.twig', [
             'controller_name' => 'TestController',
         ]);
     }

@@ -1,19 +1,25 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
+    "minimum-stability": "stable", 
     "prefer-stable": true,
     "require": {
+        "composer/composer": "^2.1",
         "php": ">=7.2.5",
-        "ext-ctype": "*",
-        "ext-iconv": "*",
+        "ext-ctype": "*", 
+        "ext-iconv": "*", 
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.8",
         "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.14",
-        "phpdocumentor/reflection-docblock": "^5.3",
-        "phpstan/phpdoc-parser": "^1.16",
-        "sensio/framework-extra-bundle": "^6.1",
+        "doctrine/orm": "^2.14", 
+        "dompdf/dompdf": "^2.0", 
+        "endroid/installer": "^1.4", 
+        "endroid/qr-code": "^4.8",  
+        "endroid/qr-code-bundle": "^4.3", 
+        "knplabs/knp-snappy-bundle": "^1.9",
+        "phpdocumentor/reflection-docblock": "^5.3", 
+        "phpstan/phpdoc-parser": "^1.16", 
+        "sensio/framework-extra-bundle": "^6.1", 
         "symfony/asset": "5.4.*",
         "symfony/console": "5.4.*",
         "symfony/doctrine-messenger": "5.4.*",
@@ -22,6 +28,7 @@
         "symfony/flex": "^1.17|^2",
         "symfony/form": "5.4.*",
         "symfony/framework-bundle": "5.4.*",
+        "symfony/google-mailer": "5.4.*",
         "symfony/http-client": "5.4.*",
         "symfony/intl": "5.4.*",
         "symfony/mailer": "5.4.*",
@@ -40,15 +47,18 @@
         "symfony/validator": "5.4.*",
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
-        "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "symfonycasts/reset-password-bundle": "^1.17", 
+        "twig/extra-bundle": "^2.12|^3.0", 
+        "twig/intl-extra": "^3.5",
+        "twig/twig": "^2.12|^3.0",         "twilio/sdk": "^6.44" 
     },
-    "require-dev": {
+    "require-dev": { 
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.48",
         "symfony/phpunit-bridge": "^6.2",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"
@@ -57,7 +67,11 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true,
+            "robloach/component-installer": false,
+            "endroid/installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -92,12 +106,12 @@
             "@auto-scripts"
         ]
     },
-    "conflict": {
-        "symfony/symfony": "*"
+    "conflict": { 
+        "symfony/symfony": "*" 
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": false, 
             "require": "5.4.*"
         }
     }
